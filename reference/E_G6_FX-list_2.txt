@@ -1,0 +1,1549 @@
+--- Page 1 ---
+Effect Types and Parameters
+This document cannot be displayed properly on black-and-white displays.
+© 2021 ZOOM CORPORATION
+Manufacturer names and product names are trademarks or registered trademarks of their respective owners. The names are used only to illustrate
+sonic characteristics and do not indicate any affiliation with the Zoom Corporation.
+
+--- Page 2 ---
+Effect explanation overview
+Pedal control possible icon
+Effect type Effect explanation Parameter range
+PDL Delay The expression pedal controls the delay input level of this effect.
+InLvl Adjusts the delay input level. 0 – 100 P
+Time Sets the delay time. 1 – 4000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+Parameter explanation Tempo synchronization possible icon
+Effect Screen Parameter
+Contents
+DYNAMICS 3
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+FILTER 4
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+DRIVE 6
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+AMP 10
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+CABINET 14
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+MODULATION 18
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+SFX 21
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+DELAY 22
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+REVERB 25
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+PEDAL 27
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+SND-RTN 30
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+IR 30
+ •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •  •
+Additional tables 31
+2 3
+
+--- Page 3 ---
+Effect Types and Parameters
+[ DYNAMICS ]
+Comp This compressor in the style of the MXR Dyna Comp.
+Sense Adjusts the sensitivity of the effect. 0 –10
+ATTCK Sets compressor attack speed to Fast or Slow. SLOW, FAST
+Tone Adjusts the tone. 0 – 10
+VOL Adjusts the volume. 0 – 100
+RackComp This compressor allows more detailed adjustment than Comp.
+THRSH Sets the level that activates the compressor. 0 – 50
+Ratio Adjusts the compression ratio. 1 – 10
+ATTCK Sets compressor attack speed. 1 – 10
+VOL Adjusts the volume. 0 – 100
+SlowATTCK This effect slows the attack of each note, resulting in a violin-like performance.
+Time Adjusts the attack time. 1 – 50
+Curve Set the curve of volume change during attack. 0 – 10
+Tone Adjusts the tone. 0 – 100
+VOL Adjusts the volume. 0 – 100
+ZOOM's unique noise reduction cuts noise during pauses in playing without affecting
+ZNR
+the tone.
+GTRIN,
+DETCT Sets control signal detection level.
+EFXIN
+Depth Sets the depth of noise reduction. 0 – 100
+THRSH Adjusts the effect sensitivity. 0 – 100
+Decay Adjust the envelope release. 0 – 100
+MuteSW This effect allows you to mute the volume using the foot switch.
+Sets how smoothly the volume changes. As the parameter value increases, the change
+Edge 0 – 100
+becomes smoother.
+Speed Adjust the recovery time from muting. 0 – 100
+NORMAL,
+INVRT Sets the foot switch control direction.
+INVERT
+LATCH,
+ON/OFF Sets the foot switch function. UnLATCH,
+TRGGR
+GrayComp This models a ROSS Compressor. Added parameters allow you to adjust the tone.
+SUSTN Adjusts the sustain. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+Hi Adjusts volume of high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+NoiseGate This is a noise gate that cuts the sound during playing pauses.
+DETCT Sets control signal detection level. GTRIN, EFXIN
+Depth Sets the depth of noise reduction. 0 – 100
+THRSH Adjusts the effect sensitivity. 0 – 100
+Decay Adjust the envelope release. 0 – 100
+OptComp This is an optical compressor.
+Drive Adjusts the depth of the compression. 0 – 10
+Lo Adjusts volume of low frequencies. 0 – 100
+Hi Adjusts volume of high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+2 3
+
+--- Page 4 ---
+Effect Types and Parameters
+[ DYNAMICS ]
+This is a simulation of the Demeter COMP-1 Compulator.
+BlackOpt
+Added parameters allow you to adjust the tone.
+Comp Adjusts the depth of the compression. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+Hi Adjusts volume of high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+LMT-76 This is a simulation of the UREI 1176LN.
+Input Adjusts the input level. 0 – 80
+4:1, 8:1, 12:1,
+Ratio Adjusts the compression ratio.
+20:1
+REL This is a limiter that suppresses signal peaks above a certain reference level. 10 – 70
+Output Adjusts the output level. 0 – 80
+[ FILTER ]
+AutoWah This effect varies wah in accordance with picking intensity.
+Mode Sets direction of movement of the filter. DOWN, UP
+Sense Adjusts the sensitivity of the effect. 1 – 10
+RESO Sets effect resonance. 0 – 10
+VOL Adjusts the volume. 0 – 100
+Resonance This effect varies the resonance filter frequency according to picking intensity.
+Mode Sets direction of movement of the filter. DOWN, UP
+Sense Adjusts the sensitivity of the effect. 1 – 10
+RESO Sets effect resonance. 0 – 10
+VOL Adjusts the volume. 0 – 100
+Cry This effect varies the sound like a talking modulator.
+Range Adjusts the frequency range processed by the effect. 1 – 10
+RESO Sets effect resonance. 0 – 10
+-10 – -1,
+Sense Adjusts the sensitivity of the effect.
+1 – 10
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+SeqFLTR The sequence filter has the flavor of a Z.Vex Seek-Wah.
+Step Adjusts number of sequence steps. 2 – 8
+PTTRN Sets effect pattern. 1 – 8
+Speed Sets the speed of the modulation. 1 – 50
+RESO Sets effect resonance. 0 – 10
+Gt GEQ This mono graphic equalizer has 6 bands that suit guitar frequencies.
+160 Boosts or cuts the low (160 Hz) frequency band. -12 – 12
+400 Boosts or cuts the low (400 Hz) frequency band. -12 – 12
+800 Boosts or cuts the low (800 Hz) frequency band. -12 – 12
+3.2k Boosts or cuts the low (3.2 kHz) frequency band. -12 – 12
+6.4k Boosts or cuts the low (6.4 kHz) frequency band. -12 – 12
+12k Boosts or cuts the low (12 kHz) frequency band. -12 – 12
+VOL Adjusts the volume. 0 – 100
+4 5
+
+--- Page 5 ---
+Effect Types and Parameters
+[ FILTER ]
+Gt GEQ7 This mono graphic equalizer has 7 bands that suit guitar frequencies.
+100 Boosts or cuts the low (100 Hz) frequency band. -12 – 12
+200 Boosts or cuts the low (200 Hz) frequency band. -12 – 12
+400 Boosts or cuts the low (400 Hz) frequency band. -12 – 12
+800 Boosts or cuts the low (800 Hz) frequency band. -12 – 12
+1.6k Boosts or cuts the low (1.6 kHz) frequency band. -12 – 12
+3.2k Boosts or cuts the low (3.2 kHz) frequency band. -12 – 12
+6.4k Boosts or cuts the low (6.4 kHz) frequency band. -12 – 12
+VOL Adjusts the volume. 0 – 100
+St Gt GEQ This stereo graphic equalizer has 6 bands that suit guitar frequencies.
+160 Boosts or cuts the low (160 Hz) frequency band. -12 – 12
+400 Boosts or cuts the low (400 Hz) frequency band. -12 – 12
+800 Boosts or cuts the low (800 Hz) frequency band. -12 – 12
+3.2k Boosts or cuts the low (3.2 kHz) frequency band. -12 – 12
+6.4k Boosts or cuts the low (6.4 kHz) frequency band. -12 – 12
+12k Boosts or cuts the low (12 kHz) frequency band. -12 – 12
+VOL Adjusts the volume. 0 – 100
+ParaEQ This is a 1-band parametric equalizer.
+FREQ Sets the frequency of the equalizer. 20 – 20k
+Q Adjusts equalizer Q. 0.5 – 16
+Gain Adjusts the gain. -12 – 12
+VOL Adjusts the volume. 0 – 100
+EG FLTR This filter effect is controlled using the foot switch.
+FREQ1 Sets the frequency when the foot switch is off. 0 – 100
+FREQ2 Sets the frequency when the foot switch is on. 0 – 100
+RESO Sets effect resonance. 0 – 100
+HPF2 –
+Type Sets filter type.
+LPF4
+Speed Sets the speed of the modulation. 0 – 100
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+VOL Adjusts the volume. 0 – 100
+RndmFLTR This filter effect changes character randomly.
+HPF, BPF,
+Type Sets filter type.
+LPF
+Speed Sets the speed of the modulation. 1 – 50
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+VOL Adjusts the volume. 0 – 100
+LowPassFL This effect varies the low pass filter frequency according to picking intensity.
+FREQ Sets minimum frequency of low pass filter. 0 – 100
+FST100 –
+Sense Adjusts the sensitivity of the effect.
+SLW100
+RESO Sets effect resonance. 2P-10 – 4P-10
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+4 5
+
+--- Page 6 ---
+Effect Types and Parameters
+[ FILTER ]
+Exciter This exciter enables flexible control.
+Bass Adjusts the amount of low-frequency phase correction. 0 – 100
+Treble Adjusts the amount of high-frequency phase correction. 0 – 100
+VOL Adjusts the volume. 0 – 100
+LATCH,
+ON/OFF Sets the foot switch function.
+UnLATCH
+Step This special effect gives the sound a stepped quality.
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 0 – 50
+RESO Sets effect resonance. 0 – 10
+Shape Adjusts the effect envelope. 0 – 10
+LFO FLTR This filter effect changes tone characteristics cyclically.
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 1 – 50
+RESO Sets effect resonance. 0 – 10
+SINE, TRI,
+Wave Sets the modulation waveform. SAWUP,
+SAWDN
+[ DRIVE ]
+TS Drive Simulation of the Ibanez TS808.
+Gain Adjusts the gain. 0 – 100
+Boost Turns boost ON/OFF. OFF, ON
+Tone Adjusts the tone. 0 – 100
+VOL Adjusts the volume. 0 – 100
+EP Stomp This models the Maestro Echoplex preamp.
+Gain Adjusts the gain. 0 – 100
+Bass Adjusts volume of low frequencies. -10 – 10
+Treble Adjusts volume of high frequencies. -10 – 10
+VOL Adjusts the volume. 0 – 100
+RC Boost This booster covers sounds ranging from clean boosts to light drives.
+Gain Adjusts the gain. 0 – 100
+Bass Adjusts volume of low frequencies. 0 – 100
+Treble Adjusts volume of high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+GoldDrive This effect models a famous gold overdrive boutique pedal.
+Gain Adjusts the gain. 0 – 100
+Bass Adjusts volume of low frequencies. 0 – 100
+Treble Adjusts volume of high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+SweetDrv This effect models a sweet sounding overdrive.
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts volume of high frequencies 0 – 100
+Focus Adjusts volume of middle frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+6 7
+
+--- Page 7 ---
+Effect Types and Parameters
+[ DRIVE ]
+DYN Drive This effect easily achieves the warm drive tone of a tube amp.
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+COMBO,
+Mode Sets the sound style.
+STACK
+VOL Adjusts the volume. 0 – 100
+RedCrunch Use this effect for the famous "brown sound."
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+PRSNC Adjusts volume of super-high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+Simulation of the BOSS Metal Zone, which is characterized by long sustain and a
+MetalWRLD
+powerful lower midrange.
+Gain Adjusts the gain. 0 – 100
+Bass Adjusts volume of low frequencies. 0 – 100
+Treble Adjusts volume of high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+TB MK1.5 This is a classic fuzz effect.
+ATTCK Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+Color Sets the sound color. 1, 2
+VOL Adjusts the volume. 0 – 100
+OctFuzz This fuzz effect adds an octave above.
+Boost Adjusts the gain. 0 – 100
+Color Sets the sound color. 1, 2
+Tone Adjusts the tone. 0 – 100
+VOL Adjusts the volume. 0 – 100
+SpotBoost This booster enables flexible control.
+Boost Adjusts the gain. 0 – 100
+Bass Adjusts volume of low frequencies. -10 – 10
+Treble Adjusts volume of high frequencies. -10 – 10
+LATCH,
+ON/OFF Sets the foot switch function.
+UnLATCH
+This effect changes the tone of an electric guitar to make it sound like an acoustic
+Aco.Sim
+guitar.
+Top Adjusts the unique string tone of acoustic guitars. 0 – 100
+Body Adjusts the body resonance of acoustic guitars. 0 – 100
+Tone Adjusts the tone. 0 – 100
+VOL Adjusts the volume. 0 – 100
+This models an Electro-Harmonix Big Muff Pi. An added parameter allows you to
+NYC Muff
+adjust the balance of original sound and distortion.
+SUSTN Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+VOL Adjusts the volume. 0 – 100
+6 7
+
+--- Page 8 ---
+Effect Types and Parameters
+[ DRIVE ]
+This models the sound of the Mesa Boogie THROTTLE BOX(GAIN SWITCH:HI /
+HG THRTTL
+BOOST:ON).
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+MdCut Adjusts volume of middle frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+This models a Mesa Boogie GRID SLAMMER. An added parameter allows you to
+BG GRID
+adjust the balance of original sound and overdrive.
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+VOL Adjusts the volume. 0 – 100
+TS+Boost This effect combines TS Drive and Booster.
+Gain Adjusts gain of TS Drive. 0 – 100
+Tone Adjusts tone of TS Drive. 0 – 100
+VOL Adjusts volume of TS Drive. 0 – 100
+Comp Sets the clipping type of TS Drive. 0 – 2
+Boost Adjusts gain of Booster. 0 – 100
+Bass Adjusts low frequencies volume of booster. 0 – 100
+Treble Adjusts high frequencies volume of booster. 0 – 100
+BOOST-OD,
+Order Set the connection order of TS Drive and Booster.
+OD-BOOST
+RedCR+BST This effect combines RedCrunch and Booster.
+Gain Adjusts gain of RedCrunch. 0 – 100
+Tone Adjusts tone of RedCrunch. 0 – 100
+PRSNC Adjusts presence of RedCrunch. 0 – 100
+VOL Adjusts volume of RedCrunch. 0 – 100
+Comp Sets the clipping type of RedCrunch. 0 – 2
+LO/HI Sets the gain range. LO, HI
+Boost Adjusts gain of Booster. 0 – 100
+BOOST-CR,
+Order Set the connection order of RedCrunch and Booster.
+CR-BOOST
+DIST 1 This models the sound of a BOSS DS-1 DISTORTION.
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+VOL Adjusts the volume. 0 – 100
+Comp Sets the clipping type of DIST 1. ORG, MOD
+This models a ProCo RAT.
+Squeak
+A parameter has been added that allows you to adjust the mix level of the original sound.
+Gain Adjusts the gain. 0 – 100
+FLTR Adjusts the tone. 0 – 100
+VOL Adjusts the volume. 0 – 100
+DryMx Adjusts the volume of the unaffected sound. 0 – 100
+8 9
+
+--- Page 9 ---
+Effect Types and Parameters
+[ DRIVE ]
+This effect adds an upper octave to the original sound.
+UpOctBSTR
+We recommend using the front guitar pickup.
+UpOct Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+DryMx Adjusts the volume of the unaffected sound. 0 – 100
+Bottom Adjusts volume of low frequencies. 0 – 100
+PRSNC Adjusts volume of super-high frequencies. 0 – 100
+OutputBST We improved the ZOOM G5n OUTPUT BOOSTER as an effect.
+Range Adjusts the frequency range processed by the effect. 1 – 10
+Boost Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+VOL Adjusts the volume. 0 – 100
+DIST Plus This models the sound of a MXR DISTORTION+.
+Gain Adjusts the gain. 0 – 100
+VOL Adjusts the volume. 0 – 100
+DryMx Adjusts the volume of the unaffected sound. 0 – 100
+ORG,
+Comp Sets the clipping type of DIST Plus.
+MOD1, MOD2
+Zen O.DRV This models the sound of a Hermida Audio Zendrive.
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+Voice Adjusts gain of high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+VioletDST This models the sound of a SUHR Riot Reloaded.
+Gain Adjusts the gain. 0 – 100
+Tone Adjusts the tone. 0 – 100
+Voice Sets the sound style. 0 – 2
+VOL Adjusts the volume. 0 – 100
+This effect is another new kind of distortion effect that applies a new original
+WaveSHPR
+algorithm to shape the waveform and create a unique sound.
+Gain Adjusts the gain. 0 – 100
+Shape Adjusts the distortion character. 0 – 100
+Comp Adjusts the depth of the compression. 0 – 100
+VOL Adjusts the volume. 0 – 100
+This effect is a new-concept distortion effect that uses Comb filtering to simulate the
+Razor DRV
+gain parameter of the overdriven signal.
+Gain Adjusts the gain. 0 – 100
+Edge Adjusts the distortion tone. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+8 9
+
+--- Page 10 ---
+Effect Types and Parameters
+[ AMP ]
+MS 800 This models the sound of the Marshall JCM800 2203.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+INPUT Adjusts the input gain. LO, HI
+MS 1959 This models the sound of the Marshall 1959 SUPER LEAD 100.
+GAIN Adjusts the gain of the input1. OFF – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+INPUT2 Adjusts the gain of the input2. OFF – 100
+MS 45os This models the sound of the Marshall JTM 45 Offset.
+GAIN Adjusts the gain of the input1. OFF – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+INPUT2 Adjusts the gain of the input2. OFF – 100
+FD TWNR This models the sound of the Fender '65 Twin Reverb.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+BRIGHT Sets the high frequency response. The effect is noticeable at lower gain settings. OFF,ON
+SPEED Sets the speed of the modulation. 0 – 100
+FD B-MAN This models the sound of the Fender '59 Bassman.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+NORMAL,
+INPUT Selects the input channel.
+BRIGHT
+10 11
+
+--- Page 11 ---
+Effect Types and Parameters
+[ AMP ]
+FD DLXR This models the sound of the Fender '65 Deluxe Reverb.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+NORMAL,
+INPUT Selects the input channel.
+VIBRATO
+SPEED Sets the speed of the modulation. 0 – 100
+FD MASTER This models the sound of the Fender ToneMaster B channel.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+FAT Sets the sound style. OFF, ON
+UK 30A This models the sound of an early class A British combo amp.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+CUT Adjusts the tone. 0 – 100
+SPEED Sets the speed of the modulation. 0 – 100
+BG MK1 This models the sound of the Mesa Boogie Mark I combo amp.
+GAIN1 Adjusts the gain of the first stage. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+GAIN2 Adjusts the gain of the second stage. 0 – 100
+BG MK3 This models the sound of the Mesa Boogie Mark III combo amp.
+GAIN1 Adjusts the gain of the first stage. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+GAIN2 Adjusts the gain of the second stage. 0 – 100
+10 11
+
+--- Page 12 ---
+Effect Types and Parameters
+[ AMP ]
+XtasyBlue This models the sound of the Bogner Ecstasy Blue channel.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+STRCT Selects the type and gain of the tone. LO, HI
+HW 100 This models the sound of the Hiwatt Custom 100.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+NORMAL,
+INPUT Selects the input channel.
+BRILL
+Recti ORG This models the sound of the Mesa Boogie Dual Rectifier Orange Channel.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+MODE Sets the tone of the character. VNTG, MDRN
+ORG120 This models the sound of the Orange Graphic120.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+INPUT Selects the input channel. LO, HI
+COLOR Sets the tone of the effect type. 1 – 6
+DZ DRV This models the sound of the Diezel Herbert Channel2.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+DEEP Emphasizes low frequencies. 0 – 100
+MID CUT Cuts middle frequencies. 0 – 100
+12 13
+
+--- Page 13 ---
+Effect Types and Parameters
+[ AMP ]
+MATCH30 This models the sound of the Matchless DC-30.
+GAIN Adjusts the gain of channel1. OFF – 100
+BASS Adjusts volume of low frequencies in the channel1. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies in the channel1. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – OFF
+GAIN2 Adjusts the gain of channel2. OFF – 100
+CUT Adjusts the tone. 0 – 100
+Combines the solid low range of a modern high gain amplifier with the brightness of
+KRAMPUS
+an 80's British amplifier.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+Merges the simple tone of the early days of guitar amps with the rich overtones of a
+REDLOOM
+60's small tube amp. Ideal for playing rhythm.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+Provides a smooth character amp that balances the dynamic response between
+VELVET the wound and plain strings, enabling you to play both lead and backing without
+switching tones.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+Delivers a vintage style amp sound processed with a clear measured tone with natural
+MUDDY
+crunch. Perfect for blues and rock.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+12 13
+
+--- Page 14 ---
+Effect Types and Parameters
+[ AMP ]
+Emphases on the sound for 7 and 8 string guitars by blending the dynamic response
+7 HEAVEN
+with a very tight low end. Expect a very powerful metal sound.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+With extreme drop-tuning, this amp delivers a heavy-metal Djent style of sound.
+POLLEX
+Recommended for slap-playing as well.
+GAIN Adjusts the gain. 0 – 100
+BASS Adjusts volume of low frequencies. 0 – 100
+MIDDLE Adjusts volume of middle frequencies. 0 – 100
+TREBLE Adjusts volume of high frequencies. 0 – 100
+PRESENCE Adjusts volume of super-high frequencies. 0 – 100
+VOLUME Adjusts the volume. 0 – 100
+[ CABINET ]
+This models the sound of a Marshall 1960 A-type cabinet with four 12" Celestion
+MS4x12
+speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of a Marshall 1960 B-type cabinet with four 12" Celestion
+MS4x12GB
+G12M GreenBack speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of a Marshall JTM45 offset half stack cabinet with four 12"
+MS4x12AL
+Celestion G12 Alnico speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+14 15
+
+--- Page 15 ---
+Effect Types and Parameters
+[ CABINET ]
+This models the sound of the Fender '65 Twin Reverb cabinet with two 12" Jensen
+FD2x12
+speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of the Fender '59 Bassman cabinet with four 10" Jensen
+FD-B4x10
+speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of a Fender '65 Deluxe Reverb cabinet with one 12" Jensen
+FD-DX1x12
+C-12K Speaker.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of a Fender ToneMaster2x12 cabinet with two 12" Celestion
+FD MA2x12
+G12-80 speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of an early British combo amp with two 12" Celestion Alnico
+UK2x12
+speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of a Mesa Boogie Mark I cabinet with one 12" ALTEC 417-8H
+MK1 1x12
+speaker.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+14 15
+
+--- Page 16 ---
+Effect Types and Parameters
+[ CABINET ]
+This models the sound of a Mesa Boogie Mark III cabinet with one 12" Celestion Black
+MK3 1x12
+Shadow Speaker.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+BGN4x12 This models the sound of the Bogner Ecstasy cabinet with four 12" Celestion speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+HW4x12 This models the sound of a Hiwatt SE-4123 cabinet with four 12" Fane speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of a Mesa Boogie Recto Standard Slant Cabinet ARMOR with
+RCT4x12
+four 12" Celestion Vintage 30 speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of an Orange PPC412 cabinet with four 12" Celestion Vintage
+ORG4x12
+30 speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+This models the sound of a Diezel 412F cabinet with four 12" Celestion Vintage 30
+DZ4x12F
+speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+16 17
+
+--- Page 17 ---
+Effect Types and Parameters
+[ CABINET ]
+This models the sound of a Matchless DC-30 cabinet with 12" Customized Celestion
+MA2x12
+G12H30 and 12" Celestion G12M Greenback speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers.
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+KP4x12 This models the sound of KRAMPUS cabinet with four 12" speakers.
+MIC Sets the depth of the modulation. OFF, ON
+D57:D421 Sets the speed of the modulation. 0 – 100
+Hi Adjusts the tone. 0 – 100
+Lo Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+RED4x10 This models the sound of REDLOOM cabinet with four 10" speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+VT4x12 This models the sound of VELVET cabinet with four 12" speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+MD1x12 This models the sound of MUDDY cabinet with one 12" speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+7H4x12 This models the sound of 7 HEAVEN cabinet with four 12" speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+PL4x12 This models the sound of 7 POLLEX cabinet with four 12" speakers.
+MIC=OFF: This tone is optimized for using amp modeling with a guitar amp.
+MIC MIC=ON: This tone is optimized for using amp modeling with headphones or monitor OFF, ON
+speakers
+This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+D57:D421 0 – 100
+When the MIC parameter is set to OFF, this setting has no effect.
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+16 17
+
+--- Page 18 ---
+Effect Types and Parameters
+[ MODULATION ]
+Tremolo This effect varies the volume at a regular rate.
+TRI, TUBE,
+Wave Sets the modulation waveform.
+SQR
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 0 – 100
+VOL Adjusts the volume. 0 – 100
+This effect mixes a shifted pitch with the original sound to add movement and
+Chorus
+thickness.
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 1 – 50
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+StereoCho This is a stereo chorus with a clear tone.
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 1 – 50
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+Phaser This effect adds a phasing variation to the sound.
+4 STG,
+8 STG,
+Color Sets the tone of the effect type.
+INV 4,
+INV 8
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 1 – 50
+RESO Sets effect resonance. 0 – 100
+VinFLNGR This analog flanger sound is similar to an MXR M-117R.
+PreD Sets pre-delay time of effect sound. 0 – 50
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 0 – 50
+RESO Sets effect resonance. -10 – 10
+TheVibe This vibe sound features unique undulations.
+Speed Sets the speed of the modulation. 0 – 50
+Depth Sets the depth of the modulation. 0 – 100
+VIBRT,
+Mode Sets effect to vibrato or chorus.
+CHORS
+VOL Adjusts the volume. 0 – 100
+Vibrato This effect automatically adds vibrato.
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 0 – 50
+Tone Adjusts the tone. 0 – 10
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+SwellVibe This effect modulates the pitch after picking.
+Depth Sets the depth of the modulation. 0 – 100
+Speed Sets the speed of the modulation. 0 – 100
+Rise Sets the time before the effect begins to modulate the pitch. 0 – 100
+Vol Adjusts the output level. 0 – 100
+18 19
+
+--- Page 19 ---
+Effect Types and Parameters
+[ MODULATION ]
+Octave This effect adds sound one octave and two octaves below the original sound.
+OCT1 Adjusts the level of the sound one octave below the effect sound. 0 – 100
+OCT2 Adjusts the level of the sound two octaves below the effect sound. 0 – 100
+Tone Adjusts the tone. 0 – 10
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+This effect produces a metallic ringing sound. Adjusting the "FREQ" parameter results
+RingMod
+in a drastic change of sound character.
+FREQ Sets the frequency of the modulation. 1 – 50
+Tone Adjusts the tone. 0 – 10
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+VOL Adjusts the volume. 0 – 100
+By mixing an effect sound that is slightly pitch-shifted with the original sound, this
+Detune
+effect type has a chorus effect without much sense of modulation.
+Cent Adjusts the detuning in cents, which are fine increments of 1/100-semitone. -25 – 25
+PreD Sets the pre-delay time of the effect sound. 0 – 50
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+PitchSHFT This effect shifts the pitch up or down.
+Shift Adjusts the pitch shift amount in semitones. Selecting "0" gives a detuning effect. -12–12, 24
+Fine Allows fine adjustment of pitch shift amount in Cent (1/100 semitone) steps. -25 – 25
+Tone Adjusts the tone. 0 – 10
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+PolyShift This pitch shifter supports chord playing.
+Shift Adjusts the pitch shift amount in semitones. -24 – 24
+Tone Adjusts the tone. 0 – 100
+Wet Adjust the amount of the effect sound in the mix. 0 – 100
+Dry Adjust the amount of the original sound in the mix. 0 – 100
+MonoPitch This is a pitch shifter with little sound variance for monophonic (single note) playing.
+Shift Adjusts the pitch shift amount in semitones. Selecting "0" gives a detuning effect. -12–12, 24
+Fine Allows fine adjustment of pitch shift amount in Cent (1/100 semitone) steps. -25 – 25
+Tone Adjusts the tone. 0 – 10
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+This intelligent pitch shifter outputs the effect sound with the pitch shifted according
+HPS
+to scale and key settings.
+-6, -5, -4, -3,
+-m, m, 3, 4, 5,
+Scale Sets the pitch of the pitch-shifted sound added to the original sound.
+6
+( See Table 1 )
+C, C#, D, D#,
+Key Sets the tonic (root) of the scale used for pitch shifting. E, F, F#, G, G#,
+A, A#, B
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+18 19
+
+--- Page 20 ---
+Effect Types and Parameters
+[ MODULATION ]
+Kick FLNG This flanger is controlled using the foot switch.
+PreD Sets pre-delay time of effect sound. 0 – 100
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 0 – 100
+LATCH,
+ON/OFF Sets the foot switch function.
+UnLATCH
+RESO Sets effect resonance. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+RST-F Adjusts the LFO reset frequency. 0 – 100
+Slicer This effect creates a rhythmical sound by continuously slicing the input.
+PTTRN Sets effect pattern. 1 – 20
+Speed Sets the speed of the modulation. 1 – 50 ♪
+THRSH Adjusts effect threshold. 0 – 50
+VOL Adjusts the volume. 0 – 100
+CloneCho This analog chorus sound models the Electro-Harmonix SmallClone.
+Depth Sets the depth of the modulation. 1, 2
+Rate Sets the speed of the modulation. 0 – 100
+Tone Adjusts the tone. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+SuperCho This models the sound of a BOSS CH-1 SUPER CHORUS.
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 0 – 100
+Tone Adjusts the tone. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+StonePha This phaser sound models the Electro-Harmonix SmallStone.
+Color Sets the sound color. 1, 2
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 0 – 100
+RESO Sets effect resonance. 0 – 100
+CoronaTri This is a model of tc electronic's CORONA Tri-Chorus.
+Depth Sets the depth of the modulation. 0 – 100
+Speed Sets the speed of the modulation. 0 – 100
+Tone Adjusts the tone. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+This effect provides pitch bending that uses the input signal as trigger and processes
+BendCho
+each note separately.
+Mode Sets direction of pitch bend. UP, DOWN
+Depth Sets the depth of the modulation. 0 – 100
+Time Sets time before effect starts. 0 – 50
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+20 21
+
+--- Page 21 ---
+Effect Types and Parameters
+[ MODULATION ]
+AnalogCho This effect simulates an analog chorus.
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets modulation speed. 0 – 100
+Tone Adjusts the tone. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+WarpPhase This phaser has a one way effect.
+Mode Sets direction of warping. GO, BACK
+Speed Sets modulation speed. 1 – 50
+RESO Sets effect resonance. 0 – 10
+VOL Adjusts the volume. 0 – 100
+Duo Phase This effect combines two phasers.
+DPT A Sets the depth of LFO A modulation. 1 – 100
+RateA Sets the speed of LFO A modulation. 1 – 50
+ResoA Sets the resonance of LFO A modulation. 0 – 10
+SERI, PARA,
+Link Sets how 2 phasers are connected.
+STR
+DPT B Sets the depth of LFO B modulation. 1 – 100
+1 – 50,
+Rate B Sets the speed of LFO B modulation.
+SyncA, RvrsA
+Reso B Sets the resonance of LFO B modulation. 0 – 10
+VOL Adjusts the volume. 0 – 100
+GEMINOS This effect allows you to obtain doubling tracking in real time.
+Tight Adjusts the tightness of the doubling track king. 0 – 100
+MN-3, MN-2,
+Mode Select Stereo / Mono and select the number of tracks. MN-1, ST-1,
+ST-2, ST-3
+Wet Adjust the amount of the effect sound in the mix. 0 – 100
+Dry Adjust the amount of the original sound in the mix. 0 – 100
+[ SFX ]
+Bomber This effect generates explosive sounds.
+Decay Adjusts the length of the explosive sound. 1 – 100
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+LATCH,
+ON/OFF Sets the foot switch function.
+TRGGR
+AutoPan This effect moves the sound image cyclically left and right.
+Rate Sets the speed of the modulation. 0 – 50
+Width Sets the width of the panning. 0 – 50
+Adjusts the amount of waveform clipping. Higher values emphasize the auto-panning effect
+Clip 0 – 10
+more.
+VOL Adjusts the volume. 0 – 100
+20 21
+
+--- Page 22 ---
+Effect Types and Parameters
+[ SFX ]
+LoopRoll This effect allows you use the footswitch to sample and hold what you play.
+Time Sets the loop time. 10 – 4000
+Duty Sets the time that the sample-and-hold sound is produced. 25 – 100
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+LATCH,
+ON/OFF Sets the foot switch function.
+UnLATCH
+HotSpice This effect simulates a sitar tone.
+Bend Adjust the depth of the pitch bend. 0 – 100
+Buzz Adjust the buzzing tone. 0 – 100
++1oct Adjust the volume of one octave up. 0 – 100
+VOL Adjusts the volume. 0 – 100
+[ DELAY ]
+Delay This long delay has a maximum length of 4000 ms.
+Time Sets the delay time. 1 – 4000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+AnalogDly This analog delay simulation has a long delay with a maximum length of 4000 ms.
+Time Sets the delay time. 1 – 4000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+This effect simulates a tape echo. Changing the "Time" parameter changes the pitch of
+TapeEcho
+the echoes.
+Time Sets the delay time. 1 – 2000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+ReverseDL This reverse delay is a long delay with a maximum length of 2000 ms.
+Time Sets the delay time. 10 – 2000
+F.B Adjusts the feedback amount. 0 – 100
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+ModDelay This delay effect allows the use of modulation.
+Time Sets the delay time. 1 – 2000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+22 23
+
+--- Page 23 ---
+Effect Types and Parameters
+[ DELAY ]
+Hold DLY This hold delay effect is controlled using the foot switch.
+Time Sets the delay time. 1 – 4000
+F.B Adjusts the feedback amount. 0 – 100
+HiDMP Adjusts the treble attenuation of the delay sound. 0 – 10
+Tone Adjusts the tone. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+P-P Sets delay output to mono or Ping Pong. MONO, P-P
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+P-P Delay This delay outputs the delay sound alternately left and right.
+Time Sets the delay time. 1 – 4000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+FilterDly This effect filters a delayed sound.
+Time Sets the delay time. 1 – 2000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+Dual DLY This effect combines 2 individual delays.
+TimeA Adjusts the delay time of Delay A. 0 – 1490
+F.B A Adjusts the Delay A feedback amount. 0 – 110
+TimeB Adjusts the delay time of Delay B. 0 – 1490
+F.B B Adjusts the Delay B feedback amount. 0 – 110
+DlyMx Adjust the mix of the Delay A and B effect sounds. 0 – 100
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+Depth Sets the depth of the modulation. MN-0 – ST-50
+Speed Sets the speed of the modulation. 0 – 50
+Pitch DLY This effect applies pitch shift to a delayed sound.
+Pitch Sets volume of pitch shift applied to delayed sound. -12 – 12
+Time Sets the delay time. 1 – 2000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+This delay features a short delay time that is good for muted rhythm playing and
+SlapBackD
+rockabilly.
+Sets the delay time.
+Time 1 – 300
+When Sync is chosen, the delay time is synchronized to the tempo.
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+Set the note length of the delay sound.
+SubDv , , P-P
+When P-P is chosen, L/R channels output delays in quarter/dotted eighth notes respectively.
+22 23
+
+--- Page 24 ---
+Effect Types and Parameters
+[ DELAY ]
+This combines auto pan and delay to create the effect of the stereo image moving
+A-Pan DLY
+cyclically.
+Time Sets the delay time. 1 – 1500
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+PAN-DLY,
+Link Sets the order that the auto pan and delay are connected.
+DLY-PAN
+Cycle Sets the speed of the sound movement. 1/4 – 50
+Width Sets the width of the sound movement. 0 – 50
+Clip Adjusts the amount of waveform clipping. 0 – 10
+PhaseDly This effect applies a phaser to a delayed sound.
+Time Sets the delay time. 1 – 2000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+4 STG,
+8 STG,
+Color Sets the tone of the effect type.
+INV 4,
+INV 8
+Depth Sets the depth of the modulation. 0 – 100
+Rate Sets the speed of the modulation. 1 – 50
+Reso Sets effect resonance. 0 – 100
+TapeEcho3 This tape echo effect models the MAESTRO ECHOPLEX EP-3.
+Gain Adjusts the gain. 0 – 100
+Hi Adjusts volume of high frequencies. 0 – 100
+Lo Adjusts volume of low frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+Time Sets the delay time. 10 – 1000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+RecLv Adjusts the volume recorded to the tape. 0 – 100
+ICE Delay This effect combines pitch shifting and delay.
+INTVL Sets the pitch modulation amount for the audio slices. -OCT – 2 OCT
+Time Sets the delay time. 60 – 1300
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+SlwAtkDly This effect combines slow attack and delay.
+Swell Adjusts the attack time. 1 – 50
+Time Sets the delay time. 1 – 1900
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+SoftEcho This echo has a soft tone.This echo effect allows the use of modulation.
+MOD Turns modulation ON or OFF. OFF, ON
+Time Sets the delay time. 19 – 581
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+24 25
+
+--- Page 25 ---
+Effect Types and Parameters
+[ REVERB ]
+Air This effect reproduces the ambience of a room, to create spatial depth.
+Size Sets the size of the space. 1 – 100
+REF Adjusts the amount of reflection from the wall. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+Room This reverb effect simulates the acoustics of a room.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 100
+Decay Sets the duration of the reverberations. 1 – 30
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+BrghtRoom This room reverb simulation can provide bright reverberations.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 100
+Decay Sets the duration of the reverberations. 1 – 30
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+Hall This reverb effect simulates the acoustics of a concert hall.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 100
+Decay Sets the duration of the reverberations. 1 – 30
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+BrghtHall This hall reverb simulation can provide bright reverberations.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 100
+Decay Sets the duration of the reverberations. 1 – 30
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+HD Hall This is a dense hall reverb.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 200
+Decay Sets the duration of the reverberations. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+Spring This reverb effect simulates a spring reverb.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 100
+Decay Sets the duration of the reverberations. 1 – 30
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+FD Spring This simulates the spring reverb of the '65 Fender Twin Reverb.
+Color Sets the tone of the effect type. 0, 1
+Lo Adjusts volume of low frequencies. 0 – 100
+Hi Adjusts volume of high frequencies. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+24 25
+
+--- Page 26 ---
+Effect Types and Parameters
+[ REVERB ]
+Plate This simulates a plate reverb.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 200
+Decay Sets the duration of the reverberations. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+EarlyRef This effect reproduces only the early reflections of reverb.
+Decay Adjusts the duration of the reverb. 1 – 30
+Shape Adjusts the effect envelope. -10 – 10
+Tone Adjusts the tone. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+SpaceHole This effect combines delay and reverb.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 0 – 1000
+Decay Sets the duration of the reverberations. -100 – 100
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+Depth Sets the depth of the modulation. 0 – 100
+Speed Sets the speed of the modulation. 0 – 100
+Size Adjusts the size of the reverb space. 0 – 100
+Church This effect simulates the reverberations of a church.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 0 – 200
+Decay Sets the duration of the reverberations. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. The dry sound also continues
+Tail to have the same tone as when the effect was on. When OFF, effect sound stops right when OFF, ON
+effect is turned off.
+Ambience This effect adds a natural ambience (air) to the sound.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 0 – 200
+Decay Sets the duration of the reverberations. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. The dry sound also continues
+Tail to have the same tone as when the effect was on. When OFF, effect sound stops right when OFF, ON
+effect is turned off.
+ParticleR This is a unique complex reverb.
+STBL, CRTCL,
+Mode Sets how the reverb sound changes.
+HZD
+Decay Sets the duration of the reverberations. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+Chamber This effect simulates the reverberations of a chamber-sized room.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 0 – 200
+Decay Sets the duration of the reverberations. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+26 27
+
+--- Page 27 ---
+Effect Types and Parameters
+[ REVERB ]
+GateRev This unique reverb is good for percussive playing.
+Color Sets the sound color. 1 – 5
+Decay Sets the duration of the reverberations. 0 – 100
+Tone Adjusts the tone. 0 – 100
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+HoldVerb This hold reverb effect is controlled using the foot switch.
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 200
+Decay Sets the duration of the reverberations. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+When ON, effect sound continues even after effect is turned off. When OFF, effect sound
+Tail OFF, ON
+stops right when effect is turned off.
+Color Adjusts the reverb time of the low frequencies. 0 – 100
+LoDMP Adjusts low frequency damping in reverb sound. 0 – 100
+HiDMP Adjust high frequency damping in reverb sound. 0 – 100
+[ PEDAL ]
+PDL Vol The volume curve of the volume pedal can be set.
+VOL Adjusts the volume. 0 – 100 P
+Min Adjusts the volume when the pedal is at minimum position. 0 – 100
+Max Adjusts the volume when the pedal is at maximum position. 0 – 100
+Curve Sets the volume curve. A, B
+BlackWah This pedal wah effect simulates the Cry Baby.
+FREQ Adjusts the emphasized frequency. 0 – 100 P
+Range Adjusts the frequency range processed by the effect. 0 – 100
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+VOL Adjusts the volume. 0 – 100
+ChromeWah This simulates a British wah pedal with a chrome finish.
+FREQ Adjusts the emphasized frequency. 0 – 100 P
+Range Adjusts the frequency range processed by the effect. 0 – 100
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+VOL Adjusts the volume. 0 – 100
+WAH100 Simulates an Ibanez wah pedal.
+FREQ Adjusts the emphasized frequency. 0 – 50 P
+Depth Sets the depth of the wah. 0 – 100
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+VOL Adjusts the volume. 0 – 100
+PDL Pitch Use an expression pedal to change the pitch in real time with this effect.
+Bend Sets the amount of pitch shift. 0 – 100 P
++1 OCT –
+Color Sets the type of pitch change control with the expression pedal. DWN/OCT
+( See Table 2 )
+Tone Adjusts the tone. 0 – 10
+Mode Sets the sound style. UP, DOWN
+26 27
+
+--- Page 28 ---
+Effect Types and Parameters
+[ PEDAL ]
+This is a pitch shifter specially for monophonic sound (single-note playing), which
+PDL MnPit
+allows the pitch to be shifted in real time with the expression pedal.
+Bend Sets the amount of pitch shift. 0 – 100 P
++1 OCT –
+Color Sets the type of pitch change control with the expression pedal. DWN/OCT
+( See Table 2 )
+Tone Adjusts the tone. 0 – 10
+Mode Sets the sound style. UP, DOWN
+PDL Vibe This vibe sound features unique undulations.
+Speed Sets the speed of the modulation. 0 – 50 P
+Depth Sets the depth of the modulation. 0 – 100
+VIBRAT,
+Mode Sets effect to vibrato or chorus.
+CHORS
+VOL Adjusts the volume. 0 – 100
+PDL Drive The expression pedal controls the gain of this drive effect.
+Gain Adjusts the gain. 0 – 100 P
+Tone Adjusts the tone. 0 – 100
+PRSNC Adjusts volume of super-high frequencies. 0 – 100
+VOL Adjusts the volume. 0 – 100
+PDL PHSR The expression pedal controls the modulation frequency of this phaser.
+Rate Sets the speed of the modulation. 1 – 50 P
+Depth Sets the depth of the modulation. 0 – 100
+RESO Sets effect resonance. 0 – 100
+4 STG,
+8 STG,
+Color Sets the tone of the effect type.
+INV 4,
+INV 8
+PDL Delay The expression pedal controls the delay input level of this effect.
+InLvl Adjusts the delay input level. 0 – 100 P
+Time Sets the delay time. 1 – 4000
+F.B Adjusts the feedback amount. 0 – 100
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+PDL Rev The expression pedal controls the reverb input level of this effect.
+InLvl Adjusts the reverb input level. 0 – 100 P
+PreD Adjusts the delay between input of the original sound and start of the reverb sound. 1 – 100
+Decay Sets the duration of the reverberations. 1 – 30
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+OSC Echo The expression pedal controls the delay oscillation of this effect.
+OSC Adjusts the delay time and feedback. 0 – 100 P
+T-Min Adjusts the delay time when the pedal is at minimum position. 19 – 500
+T-Max Adjusts the delay time when the pedal is at maximum position. 19 – 500
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+VoiceWah This effect can make a guitar sound like a human voice.
+Vowel Adjusts the emphasized vowel. 0 – 100 P
+PTTRN Sets effect pattern. A – C
+Voice Adjusts the vowel sounds. 0 – 100
+Mode Sets the sound style. STEP, SOFT
+28 29
+
+--- Page 29 ---
+Effect Types and Parameters
+[ PEDAL ]
+PDL Roto Simulates a rotary speaker.
+Mode Sets the rotary mode. SLOW, FAST P
+Drive Adjusts the amount of amplification from the preamp. 0 – 100
+BAL Adjusts the balance between the horn (high frequencies) and the drum (low frequencies). 0 – 100
+VOL Adjusts the volume. 0 – 100
+P-BitCRSH This effect creates a lo-fi sound.
+SMPL Sets sampling rate. 0 – 50 P
+Bit Sets bit depth. 4 – 32
+Tone Adjusts the tone. 0 – 10
+BAL Adjusts the balance between original and effect sounds. 0 – 100
+PDL FLNGR The expression pedal controls the emphasized frequency of this flanger.
+FREQ This sets the emphasized frequency. 0 – 100 P
+RESO Sets effect resonance. -10 – 10
+HiDMP Adjusts the treble attenuation of the effect sound. 0 – 10
+Mix Adjusts the amount of effected sound that is mixed with the original sound. 0 – 100
+PDL Reso Pedal wah with a strong character.
+FREQ Adjusts the emphasized frequency. 1 – 50 P
+RESO Sets effect resonance. 0 – 10
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+VOL Adjusts the volume. 0 – 100
+This controls the product output level. This volume will be kept even when the patch
+Output VP
+memory is changed.
+- -
+28 29
+
+--- Page 30 ---
+Effect Types and Parameters
+[ SND-RTN ]
+Use this to insert an external effect, for example, between effects on this unit.
+FxLoop The signal will be sent to the SEND jack from the position where this effect is placed,
+and the signal from the RETURN jack will be returned to the same position.
+Send Adjusts the SEND jack output level. 0 – 100
+Return Adjusts the RETURN jack input level. 0 – 100
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+Vol Adjusts the volume. 0 – 100
+Use this to output sound to an external effect, for example, in the middle of the effect
+Send chain of this unit.
+The signal will be sent to the SEND jack from the position where this effect is placed.
+Send Adjusts the SEND jack output level. 0 – 100
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+Chooses the function assigned to SEND. When it is set to SUBOUT, the patch level and SEND,
+Mode
+master volume are applied to the output signal to SEND. SUBOUT
+LATCH,
+ON/OFF Sets the foot switch function.
+UnLATCH
+Use this to mix the sound from an external effect, for example, into the middle of the
+effect chain of this unit.
+Return
+The signal from the RETURN jack will be returned to the position where this effect is
+placed.
+Return Adjusts the RETURN jack input level. 0 – 100
+Phase Set the phase of the RETURN jack input signal. NORM, INV
+Dry Adjusts the volume of the unaffected sound. 0 – 100
+Vol Adjusts the volume. 0 – 100
+[ IR ]
+Impulse responses capture the acoustic characteristics of spaces and quantify them as
+IR
+data.
+LO Adjusts volume of low frequencies. 0 – 100
+HI Adjusts volume of high frequencies. 0 – 100
+Adjusts the balance between original and effect sounds. When it is set between -100 to -1,
+BAL -100 – 100
+the polarity of effect sound is reversed.
+VOL Adjusts the volume. -60.0 – 6.0
+30 31
+
+--- Page 31 ---
+Additional tables
+Table 1 [Scale Parameter]
+Setting Scale used Interval
+-6 6th down
+-5 5th down
+Major
+-4 4th down
+-3 3rd down
+-m 3rd down
+Minor
+m 3rd up
+3 3rd up
+4 4th up
+Major
+5 5th up
+6 6th up
+Table 2 [Color Parameter]
+Color Pedal min Pedal max
++1 OCT 0 cent +1 octave
++2 OCT 0 cent +2 octave
+-1 SEMI 0 cent - 100 cent
+-2 OCT 0 cent - 2 octave
+DOWN 0 cent -∞
+-/+ OCT - 1 octave +original +1 octave +original
+-5/+4TH - 700 cent +original +500 cent +original
+DETUNE Doubling Detuned +original
+DWN/OCT -∞ (0 Hz) +original +1 octave +original
+©2021 ZOOM CORPORATION Z2I-4297-02
+30 31
+

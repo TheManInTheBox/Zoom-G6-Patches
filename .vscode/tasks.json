@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "wavFile",
+      "type": "promptString",
+      "description": "Path to the .wav under samples/ (e.g., samples/my-tone.wav)",
+      "default": "samples/example.wav"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Analyze: Prepare output dir",
+      "type": "process",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "$base = [System.IO.Path]::GetFileNameWithoutExtension('${input:wavFile}'); $out = Join-Path 'analysis' $base; New-Item -ItemType Directory -Force -Path $out | Out-Null; Write-Host \"Output dir: $out\""
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "silent", "panel": "dedicated" }
+    },
+    {
+      "label": "Analyze: Spectrogram",
+      "type": "process",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "$base = [System.IO.Path]::GetFileNameWithoutExtension('${input:wavFile}'); $out = Join-Path 'analysis' $base; New-Item -ItemType Directory -Force -Path $out | Out-Null; ffmpeg -y -i '${input:wavFile}' -lavfi 'showspectrumpic=s=1600x900:legend=1:scale=log:color=intensity' (Join-Path $out 'spectrogram.png')"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Render a log-frequency spectrogram PNG via FFmpeg (showspectrumpic) into analysis/<basename>/spectrogram.png"
+    },
+    {
+      "label": "Analyze: Loudness",
+      "type": "process",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "$base = [System.IO.Path]::GetFileNameWithoutExtension('${input:wavFile}'); $out = Join-Path 'analysis' $base; New-Item -ItemType Directory -Force -Path $out | Out-Null; ffmpeg -hide_banner -nostats -i '${input:wavFile}' -af 'ebur128=peak=true+sample' -f null - 2>&1 | Tee-Object -FilePath (Join-Path $out 'loudness.txt')"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Capture EBU R128 loudness (LUFS, true peak, RMS) via FFmpeg into analysis/<basename>/loudness.txt"
+    },
+    {
+      "label": "Analyze: Spectral Stats",
+      "type": "process",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "$base = [System.IO.Path]::GetFileNameWithoutExtension('${input:wavFile}'); $out = Join-Path 'analysis' $base; New-Item -ItemType Directory -Force -Path $out | Out-Null; $sox = (Get-Command sox -ErrorAction SilentlyContinue).Source; if (-not $sox) { $sox = Get-ChildItem -Path \"$env:LOCALAPPDATA\\Microsoft\\WinGet\\Packages\\ChrisBagwell.SoX_*\" -Recurse -Filter 'sox.exe' -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName }; if (-not $sox) { Write-Error 'sox.exe not found on PATH or in WinGet packages'; exit 1 }; & $sox '${input:wavFile}' -n stat 2>&1 | Tee-Object -FilePath (Join-Path $out 'sox-stat.txt')"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Capture SoX stat report (amplitude, RMS, crest factor, DC offset) into analysis/<basename>/sox-stat.txt"
+    },
+    {
+      "label": "Analyze: All",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Analyze: Prepare output dir",
+        "Analyze: Spectrogram",
+        "Analyze: Loudness",
+        "Analyze: Spectral Stats"
+      ],
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Run spectrogram + loudness + spectral stats in sequence on the chosen .wav"
+    }
+  ]
+}

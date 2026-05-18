@@ -1,0 +1,1901 @@
+# Zoom G6 FX Catalog — Structured
+#
+# Source: reference/E_G6_FX-list_2.txt (transcribed from E_G6_FX-list_2.pdf, © 2021 ZOOM CORPORATION).
+# Status: Single source of truth for effect names, parameter names, and parameter ranges.
+#
+# Schema:
+#   categories:
+#     <CATEGORY_NAME>:
+#       pages: [<int>, ...]              # source PDF pages where this category appears
+#       effects:
+#         - name: <string>               # exact display name from the catalog
+#           page: <int>                  # primary page of this entry
+#           description: <string>        # verbatim from catalog
+#           params:
+#             - name: <string>           # exact parameter name
+#               description: <string>    # verbatim
+#               raw: <string>            # range string verbatim from catalog (em-dashes preserved as " – ")
+#               typed:                   # machine-usable range
+#                 kind: int | float | enum | special
+#                 # for kind: int / float
+#                 min: <number>          # inclusive
+#                 max: <number>          # inclusive
+#                 unit: <string>         # optional, only when catalog implies it (ms, Hz, semitones, cents, dB)
+#                 # for kind: enum
+#                 values: [<string>, ...]
+#                 # for kind: special
+#                 note: <string>         # explanation of non-numeric / mixed range
+#           notes: [<string>, ...]       # optional, OCR ambiguities or cross-refs
+#
+# Conventions:
+#   - All ranges are inclusive on both ends unless `note` says otherwise.
+#   - "OFF" inside a numeric range (e.g., "OFF – 100") is modelled as kind: special with the raw string preserved,
+#     because OFF is a discrete state below the numeric floor.
+#   - Tempo-synced delay/mod params occasionally accept a note-value glyph (♩ ♪) that OCR dropped — flagged in `notes`.
+#   - Pedal-controllable parameters in the [ PEDAL ] category are marked by a trailing "P" in the source.
+#     This catalog records the underlying numeric range; the "P" capability is implicit for that category.
+#
+# Hard rules for any tool reading this file:
+#   1. Never propose an effect not present here.
+#   2. Never propose a parameter value outside its typed range (or outside `raw` when kind is special).
+#   3. Cite (category, effect name, page) when referencing an entry.
+
+generated_from: reference/E_G6_FX-list_2.txt
+source_pdf: reference/E_G6_FX-list_2.pdf
+copyright: "© 2021 ZOOM CORPORATION"
+category_order:
+  - DYNAMICS
+  - FILTER
+  - DRIVE
+  - AMP
+  - CABINET
+  - MODULATION
+  - SFX
+  - DELAY
+  - REVERB
+  - PEDAL
+  - SND-RTN
+  - IR
+
+categories:
+
+  DYNAMICS:
+    pages: [3, 4]
+    effects:
+      - name: Comp
+        page: 3
+        description: This compressor in the style of the MXR Dyna Comp.
+        params:
+          - { name: Sense, description: Adjusts the sensitivity of the effect., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: ATTCK, description: Sets compressor attack speed to Fast or Slow., raw: "SLOW, FAST", typed: { kind: enum, values: [SLOW, FAST] } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: RackComp
+        page: 3
+        description: This compressor allows more detailed adjustment than Comp.
+        params:
+          - { name: THRSH, description: Sets the level that activates the compressor., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: Ratio, description: Adjusts the compression ratio., raw: "1 – 10",  typed: { kind: int, min: 1, max: 10 } }
+          - { name: ATTCK, description: Sets compressor attack speed., raw: "1 – 10",  typed: { kind: int, min: 1, max: 10 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SlowATTCK
+        page: 3
+        description: This effect slows the attack of each note, resulting in a violin-like performance.
+        params:
+          - { name: Time,  description: Adjusts the attack time., raw: "1 – 50",  typed: { kind: int, min: 1, max: 50 } }
+          - { name: Curve, description: Set the curve of volume change during attack., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: ZNR
+        page: 3
+        description: ZOOM's unique noise reduction cuts noise during pauses in playing without affecting the tone.
+        params:
+          - { name: DETCT, description: Sets control signal detection level., raw: "GTRIN, EFXIN", typed: { kind: enum, values: [GTRIN, EFXIN] } }
+          - { name: Depth, description: Sets the depth of noise reduction., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: THRSH, description: Adjusts the effect sensitivity., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Decay, description: Adjust the envelope release., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MuteSW
+        page: 3
+        description: This effect allows you to mute the volume using the foot switch.
+        params:
+          - { name: Edge,   description: "Sets how smoothly the volume changes. As the parameter value increases, the change becomes smoother.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Speed,  description: Adjust the recovery time from muting., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INVRT,  description: Sets the foot switch control direction., raw: "NORMAL, INVERT", typed: { kind: enum, values: [NORMAL, INVERT] } }
+          - { name: ON/OFF, description: Sets the foot switch function., raw: "LATCH, UnLATCH, TRGGR", typed: { kind: enum, values: [LATCH, UnLATCH, TRGGR] } }
+
+      - name: GrayComp
+        page: 3
+        description: This models a ROSS Compressor. Added parameters allow you to adjust the tone.
+        params:
+          - { name: SUSTN, description: Adjusts the sustain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,    description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,    description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: NoiseGate
+        page: 3
+        description: This is a noise gate that cuts the sound during playing pauses.
+        params:
+          - { name: DETCT, description: Sets control signal detection level., raw: "GTRIN, EFXIN", typed: { kind: enum, values: [GTRIN, EFXIN] } }
+          - { name: Depth, description: Sets the depth of noise reduction., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: THRSH, description: Adjusts the effect sensitivity., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Decay, description: Adjust the envelope release., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: OptComp
+        page: 3
+        description: This is an optical compressor.
+        params:
+          - { name: Drive, description: Adjusts the depth of the compression., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: Lo,    description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,    description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: BlackOpt
+        page: 4
+        description: This is a simulation of the Demeter COMP-1 Compulator. Added parameters allow you to adjust the tone.
+        params:
+          - { name: Comp, description: Adjusts the depth of the compression., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,   description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: LMT-76
+        page: 4
+        description: This is a simulation of the UREI 1176LN.
+        params:
+          - { name: Input,  description: Adjusts the input level., raw: "0 – 80", typed: { kind: int, min: 0, max: 80 } }
+          - { name: Ratio,  description: Adjusts the compression ratio., raw: "4:1, 8:1, 12:1, 20:1", typed: { kind: enum, values: ["4:1", "8:1", "12:1", "20:1"] } }
+          - { name: REL,    description: This is a limiter that suppresses signal peaks above a certain reference level., raw: "10 – 70", typed: { kind: int, min: 10, max: 70 } }
+          - { name: Output, description: Adjusts the output level., raw: "0 – 80", typed: { kind: int, min: 0, max: 80 } }
+
+  FILTER:
+    pages: [4, 5, 6]
+    effects:
+      - name: AutoWah
+        page: 4
+        description: This effect varies wah in accordance with picking intensity.
+        params:
+          - { name: Mode,  description: Sets direction of movement of the filter., raw: "DOWN, UP", typed: { kind: enum, values: [DOWN, UP] } }
+          - { name: Sense, description: Adjusts the sensitivity of the effect., raw: "1 – 10",  typed: { kind: int, min: 1, max: 10 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Resonance
+        page: 4
+        description: This effect varies the resonance filter frequency according to picking intensity.
+        params:
+          - { name: Mode,  description: Sets direction of movement of the filter., raw: "DOWN, UP", typed: { kind: enum, values: [DOWN, UP] } }
+          - { name: Sense, description: Adjusts the sensitivity of the effect., raw: "1 – 10",  typed: { kind: int, min: 1, max: 10 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Cry
+        page: 4
+        description: This effect varies the sound like a talking modulator.
+        params:
+          - { name: Range, description: Adjusts the frequency range processed by the effect., raw: "1 – 10",  typed: { kind: int, min: 1, max: 10 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - name: Sense
+            description: Adjusts the sensitivity of the effect.
+            raw: "-10 – -1, 1 – 10"
+            typed: { kind: special, note: "Two disjoint integer ranges: [-10..-1] and [1..10]. Zero is excluded." }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SeqFLTR
+        page: 4
+        description: The sequence filter has the flavor of a Z.Vex Seek-Wah.
+        params:
+          - { name: Step,  description: Adjusts number of sequence steps., raw: "2 – 8",  typed: { kind: int, min: 2, max: 8 } }
+          - { name: PTTRN, description: Sets effect pattern., raw: "1 – 8",  typed: { kind: int, min: 1, max: 8 } }
+          - { name: Speed, description: Sets the speed of the modulation., raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+
+      - name: Gt GEQ
+        page: 4
+        description: This mono graphic equalizer has 6 bands that suit guitar frequencies.
+        params:
+          - { name: "160",  description: "Boosts or cuts the low (160 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "400",  description: "Boosts or cuts the low (400 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "800",  description: "Boosts or cuts the low (800 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "3.2k", description: "Boosts or cuts the low (3.2 kHz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "6.4k", description: "Boosts or cuts the low (6.4 kHz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "12k",  description: "Boosts or cuts the low (12 kHz) frequency band.",  raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Gt GEQ7
+        page: 5
+        description: This mono graphic equalizer has 7 bands that suit guitar frequencies.
+        params:
+          - { name: "100",  description: "Boosts or cuts the low (100 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "200",  description: "Boosts or cuts the low (200 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "400",  description: "Boosts or cuts the low (400 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "800",  description: "Boosts or cuts the low (800 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "1.6k", description: "Boosts or cuts the low (1.6 kHz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "3.2k", description: "Boosts or cuts the low (3.2 kHz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "6.4k", description: "Boosts or cuts the low (6.4 kHz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: St Gt GEQ
+        page: 5
+        description: This stereo graphic equalizer has 6 bands that suit guitar frequencies.
+        params:
+          - { name: "160",  description: "Boosts or cuts the low (160 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "400",  description: "Boosts or cuts the low (400 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "800",  description: "Boosts or cuts the low (800 Hz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "3.2k", description: "Boosts or cuts the low (3.2 kHz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "6.4k", description: "Boosts or cuts the low (6.4 kHz) frequency band.", raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: "12k",  description: "Boosts or cuts the low (12 kHz) frequency band.",  raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: ParaEQ
+        page: 5
+        description: This is a 1-band parametric equalizer.
+        params:
+          - { name: FREQ, description: Sets the frequency of the equalizer., raw: "20 – 20k", typed: { kind: int,   min: 20, max: 20000, unit: Hz } }
+          - { name: Q,    description: Adjusts equalizer Q., raw: "0.5 – 16", typed: { kind: float, min: 0.5, max: 16 } }
+          - { name: Gain, description: Adjusts the gain., raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: dB } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: EG FLTR
+        page: 5
+        description: This filter effect is controlled using the foot switch.
+        params:
+          - { name: FREQ1, description: Sets the frequency when the foot switch is off., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: FREQ2, description: Sets the frequency when the foot switch is on., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Type,  description: Sets filter type., raw: "HPF2 – LPF4", typed: { kind: enum, values: [HPF2, BPF2, LPF2, HPF4, BPF4, LPF4] }, }
+          - { name: Speed, description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+        notes:
+          - "Type 'HPF2 – LPF4' OCR'd as a range; per Zoom convention this enumerates {HPF2, BPF2, LPF2, HPF4, BPF4, LPF4}. Confirm against PDF before using esoteric values."
+
+      - name: RndmFLTR
+        page: 5
+        description: This filter effect changes character randomly.
+        params:
+          - { name: Type,  description: Sets filter type., raw: "HPF, BPF, LPF", typed: { kind: enum, values: [HPF, BPF, LPF] } }
+          - { name: Speed, description: Sets the speed of the modulation., raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: LowPassFL
+        page: 5
+        description: This effect varies the low pass filter frequency according to picking intensity.
+        params:
+          - { name: FREQ,  description: Sets minimum frequency of low pass filter., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - name: Sense
+            description: Adjusts the sensitivity of the effect.
+            raw: "FST100 – SLW100"
+            typed: { kind: special, note: "Bipolar speed scale labelled FST100..0..SLW100. Treat as int from -100 (fastest) to +100 (slowest); confirm endpoint labels against PDF." }
+          - name: RESO
+            description: Sets effect resonance.
+            raw: "2P-10 – 4P-10"
+            typed: { kind: special, note: "Catalog literal '2P-10 – 4P-10' — likely 2-pole vs 4-pole filter slope plus resonance value. Confirm against PDF before assigning." }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Exciter
+        page: 6
+        description: This exciter enables flexible control.
+        params:
+          - { name: Bass,   description: Adjusts the amount of low-frequency phase correction., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Treble, description: Adjusts the amount of high-frequency phase correction., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: ON/OFF, description: Sets the foot switch function., raw: "LATCH, UnLATCH", typed: { kind: enum, values: [LATCH, UnLATCH] } }
+
+      - name: Step
+        page: 6
+        description: This special effect gives the sound a stepped quality.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: Shape, description: Adjusts the effect envelope., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+
+      - name: LFO FLTR
+        page: 6
+        description: This filter effect changes tone characteristics cyclically.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "1 – 50",  typed: { kind: int, min: 1, max: 50 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 10",  typed: { kind: int, min: 0, max: 10 } }
+          - { name: Wave,  description: Sets the modulation waveform., raw: "SINE, TRI, SAWUP, SAWDN", typed: { kind: enum, values: [SINE, TRI, SAWUP, SAWDN] } }
+
+  DRIVE:
+    pages: [6, 7, 8, 9, 10]
+    effects:
+      - name: TS Drive
+        page: 6
+        description: Simulation of the Ibanez TS808.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Boost, description: Turns boost ON/OFF., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: EP Stomp
+        page: 6
+        description: This models the Maestro Echoplex preamp.
+        params:
+          - { name: Gain,   description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Bass,   description: Adjusts volume of low frequencies., raw: "-10 – 10", typed: { kind: int, min: -10, max: 10 } }
+          - { name: Treble, description: Adjusts volume of high frequencies., raw: "-10 – 10", typed: { kind: int, min: -10, max: 10 } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: RC Boost
+        page: 6
+        description: This booster covers sounds ranging from clean boosts to light drives.
+        params:
+          - { name: Gain,   description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Bass,   description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Treble, description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: GoldDrive
+        page: 6
+        description: This effect models a famous gold overdrive boutique pedal.
+        params:
+          - { name: Gain,   description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Bass,   description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Treble, description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SweetDrv
+        page: 6
+        description: This effect models a sweet sounding overdrive.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Focus, description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: DYN Drive
+        page: 7
+        description: This effect easily achieves the warm drive tone of a tube amp.
+        params:
+          - { name: Gain, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mode, description: Sets the sound style., raw: "COMBO, STACK", typed: { kind: enum, values: [COMBO, STACK] } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: RedCrunch
+        page: 7
+        description: Use this effect for the famous "brown sound."
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRSNC, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MetalWRLD
+        page: 7
+        description: Simulation of the BOSS Metal Zone, which is characterized by long sustain and a powerful lower midrange.
+        params:
+          - { name: Gain,   description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Bass,   description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Treble, description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: TB MK1.5
+        page: 7
+        description: This is a classic fuzz effect.
+        params:
+          - { name: ATTCK, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Color, description: Sets the sound color., raw: "1, 2", typed: { kind: enum, values: ["1", "2"] } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: OctFuzz
+        page: 7
+        description: This fuzz effect adds an octave above.
+        params:
+          - { name: Boost, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Color, description: Sets the sound color., raw: "1, 2", typed: { kind: enum, values: ["1", "2"] } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SpotBoost
+        page: 7
+        description: This booster enables flexible control.
+        params:
+          - { name: Boost,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Bass,   description: Adjusts volume of low frequencies., raw: "-10 – 10", typed: { kind: int, min: -10, max: 10 } }
+          - { name: Treble, description: Adjusts volume of high frequencies., raw: "-10 – 10", typed: { kind: int, min: -10, max: 10 } }
+          - { name: ON/OFF, description: Sets the foot switch function., raw: "LATCH, UnLATCH", typed: { kind: enum, values: [LATCH, UnLATCH] } }
+
+      - name: Aco.Sim
+        page: 7
+        description: This effect changes the tone of an electric guitar to make it sound like an acoustic guitar.
+        params:
+          - { name: Top,  description: Adjusts the unique string tone of acoustic guitars., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Body, description: Adjusts the body resonance of acoustic guitars., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: NYC Muff
+        page: 7
+        description: This models an Electro-Harmonix Big Muff Pi. An added parameter allows you to adjust the balance of original sound and distortion.
+        params:
+          - { name: SUSTN, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: HG THRTTL
+        page: 8
+        description: This models the sound of the Mesa Boogie THROTTLE BOX(GAIN SWITCH:HI / BOOST:ON).
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MdCut, description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: BG GRID
+        page: 8
+        description: This models a Mesa Boogie GRID SLAMMER. An added parameter allows you to adjust the balance of original sound and overdrive.
+        params:
+          - { name: Gain, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL,  description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: TS+Boost
+        page: 8
+        description: This effect combines TS Drive and Booster.
+        params:
+          - { name: Gain,   description: Adjusts gain of TS Drive., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,   description: Adjusts tone of TS Drive., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,    description: Adjusts volume of TS Drive., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Comp,   description: Sets the clipping type of TS Drive., raw: "0 – 2", typed: { kind: int, min: 0, max: 2 } }
+          - { name: Boost,  description: Adjusts gain of Booster., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Bass,   description: Adjusts low frequencies volume of booster., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Treble, description: Adjusts high frequencies volume of booster., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Order,  description: Set the connection order of TS Drive and Booster., raw: "BOOST-OD, OD-BOOST", typed: { kind: enum, values: [BOOST-OD, OD-BOOST] } }
+
+      - name: RedCR+BST
+        page: 8
+        description: This effect combines RedCrunch and Booster.
+        params:
+          - { name: Gain,  description: Adjusts gain of RedCrunch., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts tone of RedCrunch., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRSNC, description: Adjusts presence of RedCrunch., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts volume of RedCrunch., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Comp,  description: Sets the clipping type of RedCrunch., raw: "0 – 2", typed: { kind: int, min: 0, max: 2 } }
+          - { name: LO/HI, description: Sets the gain range., raw: "LO, HI", typed: { kind: enum, values: [LO, HI] } }
+          - { name: Boost, description: Adjusts gain of Booster., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Order, description: Set the connection order of RedCrunch and Booster., raw: "BOOST-CR, CR-BOOST", typed: { kind: enum, values: [BOOST-CR, CR-BOOST] } }
+
+      - name: DIST 1
+        page: 8
+        description: This models the sound of a BOSS DS-1 DISTORTION.
+        params:
+          - { name: Gain, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Comp, description: Sets the clipping type of DIST 1., raw: "ORG, MOD", typed: { kind: enum, values: [ORG, MOD] } }
+
+      - name: Squeak
+        page: 8
+        description: This models a ProCo RAT. A parameter has been added that allows you to adjust the mix level of the original sound.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: FLTR,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: DryMx, description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: UpOctBSTR
+        page: 9
+        description: This effect adds an upper octave to the original sound. We recommend using the front guitar pickup.
+        params:
+          - { name: UpOct,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: DryMx,  description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Bottom, description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRSNC,  description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: OutputBST
+        page: 9
+        description: We improved the ZOOM G5n OUTPUT BOOSTER as an effect.
+        params:
+          - { name: Range, description: Adjusts the frequency range processed by the effect., raw: "1 – 10",  typed: { kind: int, min: 1, max: 10 } }
+          - { name: Boost, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: DIST Plus
+        page: 9
+        description: This models the sound of a MXR DISTORTION+.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: DryMx, description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Comp,  description: Sets the clipping type of DIST Plus., raw: "ORG, MOD1, MOD2", typed: { kind: enum, values: [ORG, MOD1, MOD2] } }
+
+      - name: Zen O.DRV
+        page: 9
+        description: This models the sound of a Hermida Audio Zendrive.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Voice, description: Adjusts gain of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: VioletDST
+        page: 9
+        description: This models the sound of a SUHR Riot Reloaded.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Voice, description: Sets the sound style., raw: "0 – 2", typed: { kind: int, min: 0, max: 2 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: WaveSHPR
+        page: 9
+        description: This effect is another new kind of distortion effect that applies a new original algorithm to shape the waveform and create a unique sound.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Shape, description: Adjusts the distortion character., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Comp,  description: Adjusts the depth of the compression., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Razor DRV
+        page: 9
+        description: This effect is a new-concept distortion effect that uses Comb filtering to simulate the gain parameter of the overdriven signal.
+        params:
+          - { name: Gain, description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Edge, description: Adjusts the distortion tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,   description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  AMP:
+    pages: [10, 11, 12, 13, 14]
+    # All AMP entries share a base of {GAIN, BASS, MIDDLE, TREBLE, PRESENCE, VOLUME} 0–100 each,
+    # with model-specific additions (e.g., INPUT, INPUT2, BRIGHT, SPEED, FAT, MODE, DEEP, MID CUT, CUT, COLOR, STRCT).
+    effects:
+      - name: MS 800
+        page: 10
+        description: This models the sound of the Marshall JCM800 2203.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INPUT,    description: Adjusts the input gain., raw: "LO, HI", typed: { kind: enum, values: [LO, HI] } }
+
+      - name: MS 1959
+        page: 10
+        description: This models the sound of the Marshall 1959 SUPER LEAD 100.
+        params:
+          - { name: GAIN,     description: Adjusts the gain of the input1., raw: "OFF – 100", typed: { kind: special, note: "OFF state plus integer 0–100. Treat OFF as a distinct enum value below 0." } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INPUT2,   description: Adjusts the gain of the input2., raw: "OFF – 100", typed: { kind: special, note: "OFF state plus integer 0–100." } }
+
+      - name: MS 45os
+        page: 10
+        description: This models the sound of the Marshall JTM 45 Offset.
+        params:
+          - { name: GAIN,     description: Adjusts the gain of the input1., raw: "OFF – 100", typed: { kind: special, note: "OFF state plus integer 0–100." } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INPUT2,   description: Adjusts the gain of the input2., raw: "OFF – 100", typed: { kind: special, note: "OFF state plus integer 0–100." } }
+
+      - name: FD TWNR
+        page: 10
+        description: This models the sound of the Fender '65 Twin Reverb.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BRIGHT,   description: Sets the high frequency response. The effect is noticeable at lower gain settings., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: SPEED,    description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: FD B-MAN
+        page: 10
+        description: This models the sound of the Fender '59 Bassman.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INPUT,    description: Selects the input channel., raw: "NORMAL, BRIGHT", typed: { kind: enum, values: [NORMAL, BRIGHT] } }
+
+      - name: FD DLXR
+        page: 11
+        description: This models the sound of the Fender '65 Deluxe Reverb.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INPUT,    description: Selects the input channel., raw: "NORMAL, VIBRATO", typed: { kind: enum, values: [NORMAL, VIBRATO] } }
+          - { name: SPEED,    description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: FD MASTER
+        page: 11
+        description: This models the sound of the Fender ToneMaster B channel.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: FAT,      description: Sets the sound style., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: UK 30A
+        page: 11
+        description: This models the sound of an early class A British combo amp.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: CUT,      description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: SPEED,    description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: BG MK1
+        page: 11
+        description: This models the sound of the Mesa Boogie Mark I combo amp.
+        params:
+          - { name: GAIN1,    description: Adjusts the gain of the first stage., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: GAIN2,    description: Adjusts the gain of the second stage., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: BG MK3
+        page: 11
+        description: This models the sound of the Mesa Boogie Mark III combo amp.
+        params:
+          - { name: GAIN1,    description: Adjusts the gain of the first stage., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: GAIN2,    description: Adjusts the gain of the second stage., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: XtasyBlue
+        page: 12
+        description: This models the sound of the Bogner Ecstasy Blue channel.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: STRCT,    description: Selects the type and gain of the tone., raw: "LO, HI", typed: { kind: enum, values: [LO, HI] } }
+
+      - name: HW 100
+        page: 12
+        description: This models the sound of the Hiwatt Custom 100.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INPUT,    description: Selects the input channel., raw: "NORMAL, BRILL", typed: { kind: enum, values: [NORMAL, BRILL] } }
+
+      - name: Recti ORG
+        page: 12
+        description: This models the sound of the Mesa Boogie Dual Rectifier Orange Channel.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MODE,     description: Sets the tone of the character., raw: "VNTG, MDRN", typed: { kind: enum, values: [VNTG, MDRN] } }
+
+      - name: ORG120
+        page: 12
+        description: This models the sound of the Orange Graphic120.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: INPUT,    description: Selects the input channel., raw: "LO, HI", typed: { kind: enum, values: [LO, HI] } }
+          - { name: COLOR,    description: Sets the tone of the effect type., raw: "1 – 6", typed: { kind: int, min: 1, max: 6 } }
+
+      - name: DZ DRV
+        page: 12
+        description: This models the sound of the Diezel Herbert Channel2.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: DEEP,     description: Emphasizes low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MID CUT,  description: Cuts middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MATCH30
+        page: 13
+        description: This models the sound of the Matchless DC-30.
+        params:
+          - { name: GAIN,     description: Adjusts the gain of channel1., raw: "OFF – 100", typed: { kind: special, note: "OFF state plus integer 0–100." } }
+          - { name: BASS,     description: Adjusts volume of low frequencies in the channel1., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies in the channel1., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – OFF", typed: { kind: special, note: "Catalog literal '0 – OFF'. Likely 0–100 with OFF terminal; confirm against PDF." } }
+          - { name: GAIN2,    description: Adjusts the gain of channel2., raw: "OFF – 100", typed: { kind: special, note: "OFF state plus integer 0–100." } }
+          - { name: CUT,      description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: KRAMPUS
+        page: 13
+        description: Combines the solid low range of a modern high gain amplifier with the brightness of an 80's British amplifier.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: REDLOOM
+        page: 13
+        description: Merges the simple tone of the early days of guitar amps with the rich overtones of a 60's small tube amp. Ideal for playing rhythm.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: VELVET
+        page: 13
+        description: Provides a smooth character amp that balances the dynamic response between the wound and plain strings, enabling you to play both lead and backing without switching tones.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MUDDY
+        page: 13
+        description: Delivers a vintage style amp sound processed with a clear measured tone with natural crunch. Perfect for blues and rock.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: 7 HEAVEN
+        page: 14
+        description: Emphases on the sound for 7 and 8 string guitars by blending the dynamic response with a very tight low end. Expect a very powerful metal sound.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: POLLEX
+        page: 14
+        description: With extreme drop-tuning, this amp delivers a heavy-metal Djent style of sound. Recommended for slap-playing as well.
+        params:
+          - { name: GAIN,     description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BASS,     description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: MIDDLE,   description: Adjusts volume of middle frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: TREBLE,   description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRESENCE, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOLUME,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  CABINET:
+    pages: [14, 15, 16, 17]
+    # Almost all CABINET entries share the same parameter set:
+    #   MIC (OFF, ON), D57:D421 (0–100), Hi (0–100), Lo (0–100).
+    # The MIC description varies only in wording; D57:D421 description is constant
+    # ("This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421.
+    #   When the MIC parameter is set to OFF, this setting has no effect.").
+    # The KP4x12 entry in the source PDF appears to have mis-pasted descriptions
+    # (mentions "modulation"); the parameter NAMES and RANGES are still correct.
+    effects:
+      - name: MS4x12
+        page: 14
+        description: This models the sound of a Marshall 1960 A-type cabinet with four 12" Celestion speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: This tone is optimized for using amp modeling with a guitar amp. MIC=ON: This tone is optimized for using amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "This adjusts the volume balance between the Shure SM57 and the Sennheiser MD421. When the MIC parameter is set to OFF, this setting has no effect.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MS4x12GB
+        page: 14
+        description: This models the sound of a Marshall 1960 B-type cabinet with four 12" Celestion G12M GreenBack speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MS4x12AL
+        page: 14
+        description: This models the sound of a Marshall JTM45 offset half stack cabinet with four 12" Celestion G12 Alnico speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: FD2x12
+        page: 15
+        description: This models the sound of the Fender '65 Twin Reverb cabinet with two 12" Jensen speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: FD-B4x10
+        page: 15
+        description: This models the sound of the Fender '59 Bassman cabinet with four 10" Jensen speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: FD-DX1x12
+        page: 15
+        description: This models the sound of a Fender '65 Deluxe Reverb cabinet with one 12" Jensen C-12K Speaker.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: FD MA2x12
+        page: 15
+        description: This models the sound of a Fender ToneMaster2x12 cabinet with two 12" Celestion G12-80 speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: UK2x12
+        page: 15
+        description: This models the sound of an early British combo amp with two 12" Celestion Alnico speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MK1 1x12
+        page: 15
+        description: This models the sound of a Mesa Boogie Mark I cabinet with one 12" ALTEC 417-8H speaker.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MK3 1x12
+        page: 16
+        description: This models the sound of a Mesa Boogie Mark III cabinet with one 12" Celestion Black Shadow Speaker.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: BGN4x12
+        page: 16
+        description: This models the sound of the Bogner Ecstasy cabinet with four 12" Celestion speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: HW4x12
+        page: 16
+        description: This models the sound of a Hiwatt SE-4123 cabinet with four 12" Fane speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: RCT4x12
+        page: 16
+        description: This models the sound of a Mesa Boogie Recto Standard Slant Cabinet ARMOR with four 12" Celestion Vintage 30 speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: ORG4x12
+        page: 16
+        description: This models the sound of an Orange PPC412 cabinet with four 12" Celestion Vintage 30 speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: DZ4x12F
+        page: 16
+        description: This models the sound of a Diezel 412F cabinet with four 12" Celestion Vintage 30 speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MA2x12
+        page: 17
+        description: This models the sound of a Matchless DC-30 cabinet with 12" Customized Celestion G12H30 and 12" Celestion G12M Greenback speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: KP4x12
+        page: 17
+        description: This models the sound of KRAMPUS cabinet with four 12" speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF/ON toggle. Source PDF descriptions for this entry are mis-pasted (mention 'modulation'); standard cabinet mic-on/off behaviour applies.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "SM57 vs MD421 mic balance (descriptions mis-pasted in source; behaviour matches other cabinets).", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+        notes:
+          - "Source PDF descriptions for MIC / D57:D421 reference 'modulation' / 'speed of the modulation' — these are obvious copy/paste errors in the original document. Parameter names and ranges remain correct."
+
+      - name: RED4x10
+        page: 17
+        description: This models the sound of REDLOOM cabinet with four 10" speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: VT4x12
+        page: 17
+        description: This models the sound of VELVET cabinet with four 12" speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MD1x12
+        page: 17
+        description: This models the sound of MUDDY cabinet with one 12" speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: 7H4x12
+        page: 17
+        description: This models the sound of 7 HEAVEN cabinet with four 12" speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PL4x12
+        page: 17
+        description: This models the sound of POLLEX cabinet with four 12" speakers.
+        params:
+          - { name: MIC,      description: "MIC=OFF: amp modeling with a guitar amp. MIC=ON: amp modeling with headphones or monitor speakers.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: D57:D421, description: "Volume balance between Shure SM57 and Sennheiser MD421. No effect when MIC=OFF.", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,       description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,       description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  MODULATION:
+    pages: [18, 19, 20, 21]
+    effects:
+      - name: Tremolo
+        page: 18
+        description: This effect varies the volume at a regular rate.
+        params:
+          - { name: Wave,  description: Sets the modulation waveform., raw: "TRI, TUBE, SQR", typed: { kind: enum, values: [TRI, TUBE, SQR] } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Chorus
+        page: 18
+        description: This effect mixes a shifted pitch with the original sound to add movement and thickness.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "1 – 50",  typed: { kind: int, min: 1, max: 50 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: StereoCho
+        page: 18
+        description: This is a stereo chorus with a clear tone.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "1 – 50",  typed: { kind: int, min: 1, max: 50 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Phaser
+        page: 18
+        description: This effect adds a phasing variation to the sound.
+        params:
+          - { name: Color, description: Sets the tone of the effect type., raw: "4 STG, 8 STG, INV 4, INV 8", typed: { kind: enum, values: ["4 STG", "8 STG", "INV 4", "INV 8"] } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "1 – 50",  typed: { kind: int, min: 1, max: 50 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: VinFLNGR
+        page: 18
+        description: This analog flanger sound is similar to an MXR M-117R.
+        params:
+          - { name: PreD,  description: Sets pre-delay time of effect sound., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "-10 – 10", typed: { kind: int, min: -10, max: 10 } }
+
+      - name: TheVibe
+        page: 18
+        description: This vibe sound features unique undulations.
+        params:
+          - { name: Speed, description: Sets the speed of the modulation., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mode,  description: Sets effect to vibrato or chorus., raw: "VIBRT, CHORS", typed: { kind: enum, values: [VIBRT, CHORS] } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Vibrato
+        page: 18
+        description: This effect automatically adds vibrato.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SwellVibe
+        page: 18
+        description: This effect modulates the pitch after picking.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Speed, description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rise,  description: Sets the time before the effect begins to modulate the pitch., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Vol,   description: Adjusts the output level., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Octave
+        page: 19
+        description: This effect adds sound one octave and two octaves below the original sound.
+        params:
+          - { name: OCT1, description: Adjusts the level of the sound one octave below the effect sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: OCT2, description: Adjusts the level of the sound two octaves below the effect sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Dry,  description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: RingMod
+        page: 19
+        description: This effect produces a metallic ringing sound. Adjusting the "FREQ" parameter results in a drastic change of sound character.
+        params:
+          - { name: FREQ, description: Sets the frequency of the modulation., raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: BAL,  description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Detune
+        page: 19
+        description: By mixing an effect sound that is slightly pitch-shifted with the original sound, this effect type has a chorus effect without much sense of modulation.
+        params:
+          - { name: Cent, description: Adjusts the detuning in cents, which are fine increments of 1/100-semitone., raw: "-25 – 25", typed: { kind: int, min: -25, max: 25, unit: cents } }
+          - { name: PreD, description: Sets the pre-delay time of the effect sound., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PitchSHFT
+        page: 19
+        description: This effect shifts the pitch up or down.
+        params:
+          - name: Shift
+            description: "Adjusts the pitch shift amount in semitones. Selecting '0' gives a detuning effect."
+            raw: "-12–12, 24"
+            typed: { kind: special, note: "Integer semitones from -12 to 12, plus the discrete value 24 (an octave up of +12)." }
+          - { name: Fine, description: Allows fine adjustment of pitch shift amount in Cent (1/100 semitone) steps., raw: "-25 – 25", typed: { kind: int, min: -25, max: 25, unit: cents } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: BAL,  description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PolyShift
+        page: 19
+        description: This pitch shifter supports chord playing.
+        params:
+          - { name: Shift, description: Adjusts the pitch shift amount in semitones., raw: "-24 – 24", typed: { kind: int, min: -24, max: 24, unit: semitones } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Wet,   description: Adjust the amount of the effect sound in the mix., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Dry,   description: Adjust the amount of the original sound in the mix., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: MonoPitch
+        page: 19
+        description: This is a pitch shifter with little sound variance for monophonic (single note) playing.
+        params:
+          - name: Shift
+            description: "Adjusts the pitch shift amount in semitones. Selecting '0' gives a detuning effect."
+            raw: "-12–12, 24"
+            typed: { kind: special, note: "Integer semitones from -12 to 12, plus the discrete value 24." }
+          - { name: Fine, description: Allows fine adjustment of pitch shift amount in Cent (1/100 semitone) steps., raw: "-25 – 25", typed: { kind: int, min: -25, max: 25, unit: cents } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: BAL,  description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: HPS
+        page: 19
+        description: This intelligent pitch shifter outputs the effect sound with the pitch shifted according to scale and key settings.
+        params:
+          - name: Scale
+            description: Sets the pitch of the pitch-shifted sound added to the original sound.
+            raw: "-6, -5, -4, -3, -m, m, 3, 4, 5, 6 (See Table 1)"
+            typed: { kind: enum, values: ["-6", "-5", "-4", "-3", "-m", "m", "3", "4", "5", "6"] }
+          - { name: Key,  description: Sets the tonic (root) of the scale used for pitch shifting., raw: "C, C#, D, D#, E, F, F#, G, G#, A, A#, B", typed: { kind: enum, values: [C, "C#", D, "D#", E, F, "F#", G, "G#", A, "A#", B] } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+        notes:
+          - "Scale values reference Table 1 in the source PDF. Letter codes: 'm' = minor 6th/3rd interval pair; '-' prefix = lower direction. Verify intended interval against the PDF table before use."
+
+      - name: Kick FLNG
+        page: 20
+        description: This flanger is controlled using the foot switch.
+        params:
+          - { name: PreD,   description: Sets pre-delay time of effect sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Depth,  description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,   description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: ON/OFF, description: Sets the foot switch function., raw: "LATCH, UnLATCH", typed: { kind: enum, values: [LATCH, UnLATCH] } }
+          - { name: RESO,   description: Sets effect resonance., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,    description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: RST-F,  description: Adjusts the LFO reset frequency., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Slicer
+        page: 20
+        description: This effect creates a rhythmical sound by continuously slicing the input.
+        params:
+          - { name: PTTRN, description: Sets effect pattern., raw: "1 – 20", typed: { kind: int, min: 1, max: 20 } }
+          - name: Speed
+            description: Sets the speed of the modulation.
+            raw: "1 – 50 ♪"
+            typed: { kind: special, note: "Integer 1–50 plus optional tempo-sync note-value glyph (♪) — when tempo-sync is selected, the value is a musical note division rather than a raw integer." }
+          - { name: THRSH, description: Adjusts effect threshold., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: CloneCho
+        page: 20
+        description: This analog chorus sound models the Electro-Harmonix SmallClone.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "1, 2", typed: { kind: enum, values: ["1", "2"] } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SuperCho
+        page: 20
+        description: This models the sound of a BOSS CH-1 SUPER CHORUS.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: StonePha
+        page: 20
+        description: This phaser sound models the Electro-Harmonix SmallStone.
+        params:
+          - { name: Color, description: Sets the sound color., raw: "1, 2", typed: { kind: enum, values: ["1", "2"] } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: CoronaTri
+        page: 20
+        description: This is a model of tc electronic's CORONA Tri-Chorus.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Speed, description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: BendCho
+        page: 20
+        description: This effect provides pitch bending that uses the input signal as trigger and processes each note separately.
+        params:
+          - { name: Mode,  description: Sets direction of pitch bend., raw: "UP, DOWN", typed: { kind: enum, values: [UP, DOWN] } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Time,  description: Sets time before effect starts., raw: "0 – 50",  typed: { kind: int, min: 0, max: 50 } }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: AnalogCho
+        page: 21
+        description: This effect simulates an analog chorus.
+        params:
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets modulation speed., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: WarpPhase
+        page: 21
+        description: This phaser has a one way effect.
+        params:
+          - { name: Mode,  description: Sets direction of warping., raw: "GO, BACK", typed: { kind: enum, values: [GO, BACK] } }
+          - { name: Speed, description: Sets modulation speed., raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Duo Phase
+        page: 21
+        description: This effect combines two phasers.
+        params:
+          - { name: DPT A,  description: Sets the depth of LFO A modulation., raw: "1 – 100", typed: { kind: int, min: 1, max: 100 } }
+          - { name: RateA,  description: Sets the speed of LFO A modulation., raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: ResoA,  description: Sets the resonance of LFO A modulation., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Link,   description: Sets how 2 phasers are connected., raw: "SERI, PARA, STR", typed: { kind: enum, values: [SERI, PARA, STR] } }
+          - { name: DPT B,  description: Sets the depth of LFO B modulation., raw: "1 – 100", typed: { kind: int, min: 1, max: 100 } }
+          - name: Rate B
+            description: Sets the speed of LFO B modulation.
+            raw: "1 – 50, SyncA, RvrsA"
+            typed: { kind: special, note: "Integer 1–50, or the discrete enum values SyncA (sync to LFO A) and RvrsA (reverse of LFO A)." }
+          - { name: Reso B, description: Sets the resonance of LFO B modulation., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: VOL,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: GEMINOS
+        page: 21
+        description: This effect allows you to obtain doubling tracking in real time.
+        params:
+          - { name: Tight, description: Adjusts the tightness of the doubling track king., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mode,  description: Select Stereo / Mono and select the number of tracks., raw: "MN-3, MN-2, MN-1, ST-1, ST-2, ST-3", typed: { kind: enum, values: [MN-3, MN-2, MN-1, ST-1, ST-2, ST-3] } }
+          - { name: Wet,   description: Adjust the amount of the effect sound in the mix., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Dry,   description: Adjust the amount of the original sound in the mix., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  SFX:
+    pages: [21, 22]
+    effects:
+      - name: Bomber
+        page: 21
+        description: This effect generates explosive sounds.
+        params:
+          - { name: Decay,  description: Adjusts the length of the explosive sound., raw: "1 – 100", typed: { kind: int, min: 1, max: 100 } }
+          - { name: Tone,   description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,    description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: ON/OFF, description: Sets the foot switch function., raw: "LATCH, TRGGR", typed: { kind: enum, values: [LATCH, TRGGR] } }
+
+      - name: AutoPan
+        page: 21
+        description: This effect moves the sound image cyclically left and right.
+        params:
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "0 – 50", typed: { kind: int, min: 0, max: 50 } }
+          - { name: Width, description: Sets the width of the panning., raw: "0 – 50", typed: { kind: int, min: 0, max: 50 } }
+          - { name: Clip,  description: Adjusts the amount of waveform clipping. Higher values emphasize the auto-panning effect more., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: LoopRoll
+        page: 22
+        description: This effect allows you use the footswitch to sample and hold what you play.
+        params:
+          - { name: Time,   description: Sets the loop time., raw: "10 – 4000", typed: { kind: int, min: 10, max: 4000, unit: ms } }
+          - { name: Duty,   description: Sets the time that the sample-and-hold sound is produced., raw: "25 – 100", typed: { kind: int, min: 25, max: 100 } }
+          - { name: BAL,    description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: ON/OFF, description: Sets the foot switch function., raw: "LATCH, UnLATCH", typed: { kind: enum, values: [LATCH, UnLATCH] } }
+
+      - name: HotSpice
+        page: 22
+        description: This effect simulates a sitar tone.
+        params:
+          - { name: Bend,  description: Adjust the depth of the pitch bend., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Buzz,  description: Adjust the buzzing tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: +1oct, description: Adjust the volume of one octave up., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  DELAY:
+    pages: [22, 23, 24]
+    # Tail parameter shared semantic: "When ON, effect sound continues even after effect is turned off.
+    # When OFF, effect sound stops right when effect is turned off." (raw "OFF, ON" / enum [OFF, ON]).
+    effects:
+      - name: Delay
+        page: 22
+        description: This long delay has a maximum length of 4000 ms.
+        params:
+          - { name: Time, description: Sets the delay time., raw: "1 – 4000", typed: { kind: int, min: 1, max: 4000, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: When ON, effect sound continues even after effect is turned off. When OFF, effect sound stops right when effect is turned off., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: AnalogDly
+        page: 22
+        description: This analog delay simulation has a long delay with a maximum length of 4000 ms.
+        params:
+          - { name: Time, description: Sets the delay time., raw: "1 – 4000", typed: { kind: int, min: 1, max: 4000, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: TapeEcho
+        page: 22
+        description: This effect simulates a tape echo. Changing the "Time" parameter changes the pitch of the echoes.
+        params:
+          - { name: Time, description: Sets the delay time., raw: "1 – 2000", typed: { kind: int, min: 1, max: 2000, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: ReverseDL
+        page: 22
+        description: This reverse delay is a long delay with a maximum length of 2000 ms.
+        params:
+          - { name: Time, description: Sets the delay time., raw: "10 – 2000", typed: { kind: int, min: 10, max: 2000, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL,  description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: ModDelay
+        page: 22
+        description: This delay effect allows the use of modulation.
+        params:
+          - { name: Time, description: Sets the delay time., raw: "1 – 2000", typed: { kind: int, min: 1, max: 2000, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: Hold DLY
+        page: 23
+        description: This hold delay effect is controlled using the foot switch.
+        params:
+          - { name: Time,  description: Sets the delay time., raw: "1 – 4000", typed: { kind: int, min: 1, max: 4000, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: HiDMP, description: Adjusts the treble attenuation of the delay sound., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: P-P,   description: Sets delay output to mono or Ping Pong., raw: "MONO, P-P", typed: { kind: enum, values: [MONO, P-P] } }
+          - { name: Tail,  description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: P-P Delay
+        page: 23
+        description: This delay outputs the delay sound alternately left and right.
+        params:
+          - { name: Time, description: Sets the delay time., raw: "1 – 4000", typed: { kind: int, min: 1, max: 4000, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: FilterDly
+        page: 23
+        description: This effect filters a delayed sound.
+        params:
+          - { name: Time, description: Sets the delay time., raw: "1 – 2000", typed: { kind: int, min: 1, max: 2000, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: Dual DLY
+        page: 23
+        description: This effect combines 2 individual delays.
+        params:
+          - { name: TimeA, description: Adjusts the delay time of Delay A., raw: "0 – 1490", typed: { kind: int, min: 0, max: 1490, unit: ms } }
+          - { name: F.B A, description: Adjusts the Delay A feedback amount., raw: "0 – 110", typed: { kind: int, min: 0, max: 110 } }
+          - { name: TimeB, description: Adjusts the delay time of Delay B., raw: "0 – 1490", typed: { kind: int, min: 0, max: 1490, unit: ms } }
+          - { name: F.B B, description: Adjusts the Delay B feedback amount., raw: "0 – 110", typed: { kind: int, min: 0, max: 110 } }
+          - { name: DlyMx, description: Adjust the mix of the Delay A and B effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - name: Depth
+            description: Sets the depth of the modulation.
+            raw: "MN-0 – ST-50"
+            typed: { kind: special, note: "Bipolar range: MN-0 (mono, no modulation) through ST-50 (full stereo modulation). Treat as enum-of-strings or model as signed scale; confirm encoding against PDF." }
+          - { name: Speed, description: Sets the speed of the modulation., raw: "0 – 50", typed: { kind: int, min: 0, max: 50 } }
+
+      - name: Pitch DLY
+        page: 23
+        description: This effect applies pitch shift to a delayed sound.
+        params:
+          - { name: Pitch, description: Sets volume of pitch shift applied to delayed sound., raw: "-12 – 12", typed: { kind: int, min: -12, max: 12, unit: semitones } }
+          - { name: Time,  description: Sets the delay time., raw: "1 – 2000", typed: { kind: int, min: 1, max: 2000, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SlapBackD
+        page: 23
+        description: This delay features a short delay time that is good for muted rhythm playing and rockabilly.
+        params:
+          - { name: Time,  description: "Sets the delay time. When Sync is chosen, the delay time is synchronized to the tempo.", raw: "1 – 300", typed: { kind: int, min: 1, max: 300, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - name: SubDv
+            description: "Set the note length of the delay sound. When P-P is chosen, L/R channels output delays in quarter/dotted eighth notes respectively."
+            raw: "♩, ♪, P-P"
+            typed: { kind: enum, values: ["♩", "♪", "P-P"] }
+            note: "Source PDF shows musical-note glyphs that the OCR dropped; documented as quarter-note ♩ and eighth-note ♪ based on the description text."
+        notes:
+          - "SubDv glyph values reconstructed from prose; verify against PDF page 23."
+
+      - name: A-Pan DLY
+        page: 24
+        description: This combines auto pan and delay to create the effect of the stereo image moving cyclically.
+        params:
+          - { name: Time,  description: Sets the delay time., raw: "1 – 1500", typed: { kind: int, min: 1, max: 1500, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Link,  description: Sets the order that the auto pan and delay are connected., raw: "PAN-DLY, DLY-PAN", typed: { kind: enum, values: [PAN-DLY, DLY-PAN] } }
+          - name: Cycle
+            description: Sets the speed of the sound movement.
+            raw: "1/4 – 50"
+            typed: { kind: special, note: "Range begins at the tempo-sync value 1/4 (quarter note) and extends through integer 50. Lower end of the numeric scale is replaced by a note-value glyph." }
+          - { name: Width, description: Sets the width of the sound movement., raw: "0 – 50", typed: { kind: int, min: 0, max: 50 } }
+          - { name: Clip,  description: Adjusts the amount of waveform clipping., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+
+      - name: PhaseDly
+        page: 24
+        description: This effect applies a phaser to a delayed sound.
+        params:
+          - { name: Time,  description: Sets the delay time., raw: "1 – 2000", typed: { kind: int, min: 1, max: 2000, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour as Delay., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: Color, description: Sets the tone of the effect type., raw: "4 STG, 8 STG, INV 4, INV 8", typed: { kind: enum, values: ["4 STG", "8 STG", "INV 4", "INV 8"] } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Rate,  description: Sets the speed of the modulation., raw: "1 – 50",  typed: { kind: int, min: 1, max: 50 } }
+          - { name: Reso,  description: Sets effect resonance., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: TapeEcho3
+        page: 24
+        description: This tape echo effect models the MAESTRO ECHOPLEX EP-3.
+        params:
+          - { name: Gain,  description: Adjusts the gain., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,    description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Lo,    description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Time,  description: Sets the delay time., raw: "10 – 1000", typed: { kind: int, min: 10, max: 1000, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: RecLv, description: Adjusts the volume recorded to the tape., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: ICE Delay
+        page: 24
+        description: This effect combines pitch shifting and delay.
+        params:
+          - name: INTVL
+            description: Sets the pitch modulation amount for the audio slices.
+            raw: "-OCT – 2 OCT"
+            typed: { kind: special, note: "Pitch interval from -1 octave (-OCT) up to +2 octaves (2 OCT). Likely quantized in semitone or octave steps; confirm step granularity against PDF." }
+          - { name: Time, description: Sets the delay time., raw: "60 – 1300", typed: { kind: int, min: 60, max: 1300, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SlwAtkDly
+        page: 24
+        description: This effect combines slow attack and delay.
+        params:
+          - { name: Swell, description: Adjusts the attack time., raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: Time,  description: Sets the delay time., raw: "1 – 1900", typed: { kind: int, min: 1, max: 1900, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SoftEcho
+        page: 24
+        description: This echo has a soft tone. This echo effect allows the use of modulation.
+        params:
+          - { name: MOD,  description: Turns modulation ON or OFF., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: Time, description: Sets the delay time., raw: "19 – 581", typed: { kind: int, min: 19, max: 581, unit: ms } }
+          - { name: F.B,  description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  REVERB:
+    pages: [25, 26, 27]
+    effects:
+      - name: Air
+        page: 25
+        description: This effect reproduces the ambience of a room, to create spatial depth.
+        params:
+          - { name: Size, description: Sets the size of the space., raw: "1 – 100", typed: { kind: int, min: 1, max: 100 } }
+          - { name: REF,  description: Adjusts the amount of reflection from the wall., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,  description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail, description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: Room
+        page: 25
+        description: This reverb effect simulates the acoustics of a room.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 100", typed: { kind: int, min: 1, max: 100, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "1 – 30", typed: { kind: int, min: 1, max: 30 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: BrghtRoom
+        page: 25
+        description: This room reverb simulation can provide bright reverberations.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 100", typed: { kind: int, min: 1, max: 100, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "1 – 30", typed: { kind: int, min: 1, max: 30 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Hall
+        page: 25
+        description: This reverb effect simulates the acoustics of a concert hall.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 100", typed: { kind: int, min: 1, max: 100, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "1 – 30", typed: { kind: int, min: 1, max: 30 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: BrghtHall
+        page: 25
+        description: This hall reverb simulation can provide bright reverberations.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 100", typed: { kind: int, min: 1, max: 100, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "1 – 30", typed: { kind: int, min: 1, max: 30 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: HD Hall
+        page: 25
+        description: This is a dense hall reverb.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 200", typed: { kind: int, min: 1, max: 200, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: Spring
+        page: 25
+        description: This reverb effect simulates a spring reverb.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 100", typed: { kind: int, min: 1, max: 100, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "1 – 30", typed: { kind: int, min: 1, max: 30 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: FD Spring
+        page: 25
+        description: This simulates the spring reverb of the '65 Fender Twin Reverb.
+        params:
+          - { name: Color, description: Sets the tone of the effect type., raw: "0, 1", typed: { kind: enum, values: ["0", "1"] } }
+          - { name: Lo,    description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Hi,    description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Plate
+        page: 26
+        description: This simulates a plate reverb.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 200", typed: { kind: int, min: 1, max: 200, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: EarlyRef
+        page: 26
+        description: This effect reproduces only the early reflections of reverb.
+        params:
+          - { name: Decay, description: Adjusts the duration of the reverb., raw: "1 – 30", typed: { kind: int, min: 1, max: 30 } }
+          - { name: Shape, description: Adjusts the effect envelope., raw: "-10 – 10", typed: { kind: int, min: -10, max: 10 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: SpaceHole
+        page: 26
+        description: This effect combines delay and reverb.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "0 – 1000", typed: { kind: int, min: 0, max: 1000, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "-100 – 100", typed: { kind: int, min: -100, max: 100 } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Speed, description: Sets the speed of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Size,  description: Adjusts the size of the reverb space., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Church
+        page: 26
+        description: This effect simulates the reverberations of a church.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "0 – 200", typed: { kind: int, min: 0, max: 200, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: "When ON, effect sound continues even after effect is turned off; dry sound retains the effect-on tone.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: Ambience
+        page: 26
+        description: This effect adds a natural ambience (air) to the sound.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "0 – 200", typed: { kind: int, min: 0, max: 200, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: "When ON, effect sound continues even after effect is turned off; dry sound retains the effect-on tone.", raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: ParticleR
+        page: 26
+        description: This is a unique complex reverb.
+        params:
+          - { name: Mode,  description: Sets how the reverb sound changes., raw: "STBL, CRTCL, HZD", typed: { kind: enum, values: [STBL, CRTCL, HZD] } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: Chamber
+        page: 26
+        description: This effect simulates the reverberations of a chamber-sized room.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "0 – 200", typed: { kind: int, min: 0, max: 200, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+
+      - name: GateRev
+        page: 27
+        description: This unique reverb is good for percussive playing.
+        params:
+          - { name: Color, description: Sets the sound color., raw: "1 – 5", typed: { kind: int, min: 1, max: 5 } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL,   description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: HoldVerb
+        page: 27
+        description: This hold reverb effect is controlled using the foot switch.
+        params:
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 200", typed: { kind: int, min: 1, max: 200, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tail,  description: Tail on/off behaviour., raw: "OFF, ON", typed: { kind: enum, values: [OFF, ON] } }
+          - { name: Color, description: Adjusts the reverb time of the low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: LoDMP, description: Adjusts low frequency damping in reverb sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: HiDMP, description: Adjust high frequency damping in reverb sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  PEDAL:
+    pages: [27, 28, 29]
+    # Pedal-controllable parameter is marked "P" in source. Modelled by note on the relevant param.
+    effects:
+      - name: PDL Vol
+        page: 27
+        description: The volume curve of the volume pedal can be set.
+        params:
+          - { name: VOL,   description: "Adjusts the volume. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Min,   description: Adjusts the volume when the pedal is at minimum position., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Max,   description: Adjusts the volume when the pedal is at maximum position., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Curve, description: Sets the volume curve., raw: "A, B", typed: { kind: enum, values: [A, B] } }
+
+      - name: BlackWah
+        page: 27
+        description: This pedal wah effect simulates the Cry Baby.
+        params:
+          - { name: FREQ,  description: "Adjusts the emphasized frequency. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Range, description: Adjusts the frequency range processed by the effect., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Dry,   description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: ChromeWah
+        page: 27
+        description: This simulates a British wah pedal with a chrome finish.
+        params:
+          - { name: FREQ,  description: "Adjusts the emphasized frequency. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Range, description: Adjusts the frequency range processed by the effect., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Dry,   description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: WAH100
+        page: 27
+        description: Simulates an Ibanez wah pedal.
+        params:
+          - { name: FREQ,  description: "Adjusts the emphasized frequency. (Pedal-controllable.)", raw: "0 – 50", typed: { kind: int, min: 0, max: 50 } }
+          - { name: Depth, description: Sets the depth of the wah., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Dry,   description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PDL Pitch
+        page: 27
+        description: Use an expression pedal to change the pitch in real time with this effect.
+        params:
+          - { name: Bend, description: "Sets the amount of pitch shift. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - name: Color
+            description: Sets the type of pitch change control with the expression pedal.
+            raw: "+1 OCT – DWN/OCT (See Table 2)"
+            typed: { kind: special, note: "Enumerated list of pitch-bend curves spanning +1 OCT down to DWN/OCT. Exact value names listed in Table 2 of the source PDF — consult before assigning." }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mode, description: Sets the sound style., raw: "UP, DOWN", typed: { kind: enum, values: [UP, DOWN] } }
+        notes:
+          - "Color values reference Table 2 in the source PDF."
+
+      - name: PDL MnPit
+        page: 28
+        description: This is a pitch shifter specially for monophonic sound (single-note playing), which allows the pitch to be shifted in real time with the expression pedal.
+        params:
+          - { name: Bend, description: "Sets the amount of pitch shift. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - name: Color
+            description: Sets the type of pitch change control with the expression pedal.
+            raw: "+1 OCT – DWN/OCT (See Table 2)"
+            typed: { kind: special, note: "Enumerated list of pitch-bend curves spanning +1 OCT down to DWN/OCT. See Table 2." }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mode, description: Sets the sound style., raw: "UP, DOWN", typed: { kind: enum, values: [UP, DOWN] } }
+        notes:
+          - "Color values reference Table 2 in the source PDF."
+
+      - name: PDL Vibe
+        page: 28
+        description: This vibe sound features unique undulations.
+        params:
+          - { name: Speed, description: "Sets the speed of the modulation. (Pedal-controllable.)", raw: "0 – 50", typed: { kind: int, min: 0, max: 50 } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mode,  description: Sets effect to vibrato or chorus., raw: "VIBRAT, CHORS", typed: { kind: enum, values: [VIBRAT, CHORS] } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PDL Drive
+        page: 28
+        description: The expression pedal controls the gain of this drive effect.
+        params:
+          - { name: Gain,  description: "Adjusts the gain. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Tone,  description: Adjusts the tone., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PRSNC, description: Adjusts volume of super-high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PDL PHSR
+        page: 28
+        description: The expression pedal controls the modulation frequency of this phaser.
+        params:
+          - { name: Rate,  description: "Sets the speed of the modulation. (Pedal-controllable.)", raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: Depth, description: Sets the depth of the modulation., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Color, description: Sets the tone of the effect type., raw: "4 STG, 8 STG, INV 4, INV 8", typed: { kind: enum, values: ["4 STG", "8 STG", "INV 4", "INV 8"] } }
+
+      - name: PDL Delay
+        page: 28
+        description: The expression pedal controls the delay input level of this effect.
+        params:
+          - { name: InLvl, description: "Adjusts the delay input level. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Time,  description: Sets the delay time., raw: "1 – 4000", typed: { kind: int, min: 1, max: 4000, unit: ms } }
+          - { name: F.B,   description: Adjusts the feedback amount., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PDL Rev
+        page: 28
+        description: The expression pedal controls the reverb input level of this effect.
+        params:
+          - { name: InLvl, description: "Adjusts the reverb input level. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PreD,  description: Adjusts the delay between input of the original sound and start of the reverb sound., raw: "1 – 100", typed: { kind: int, min: 1, max: 100, unit: ms } }
+          - { name: Decay, description: Sets the duration of the reverberations., raw: "1 – 30", typed: { kind: int, min: 1, max: 30 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: OSC Echo
+        page: 28
+        description: The expression pedal controls the delay oscillation of this effect.
+        params:
+          - { name: OSC,   description: "Adjusts the delay time and feedback. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: T-Min, description: Adjusts the delay time when the pedal is at minimum position., raw: "19 – 500", typed: { kind: int, min: 19, max: 500, unit: ms } }
+          - { name: T-Max, description: Adjusts the delay time when the pedal is at maximum position., raw: "19 – 500", typed: { kind: int, min: 19, max: 500, unit: ms } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: VoiceWah
+        page: 28
+        description: This effect can make a guitar sound like a human voice.
+        params:
+          - { name: Vowel, description: "Adjusts the emphasized vowel. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: PTTRN, description: Sets effect pattern., raw: "A – C", typed: { kind: enum, values: [A, B, C] } }
+          - { name: Voice, description: Adjusts the vowel sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mode,  description: Sets the sound style., raw: "STEP, SOFT", typed: { kind: enum, values: [STEP, SOFT] } }
+
+      - name: PDL Roto
+        page: 29
+        description: Simulates a rotary speaker.
+        params:
+          - { name: Mode,  description: "Sets the rotary mode. (Pedal-controllable.)", raw: "SLOW, FAST", typed: { kind: enum, values: [SLOW, FAST] } }
+          - { name: Drive, description: Adjusts the amount of amplification from the preamp., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL,   description: Adjusts the balance between the horn (high frequencies) and the drum (low frequencies)., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,   description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: P-BitCRSH
+        page: 29
+        description: This effect creates a lo-fi sound.
+        params:
+          - { name: SMPL, description: "Sets sampling rate. (Pedal-controllable.)", raw: "0 – 50", typed: { kind: int, min: 0, max: 50 } }
+          - { name: Bit,  description: Sets bit depth., raw: "4 – 32", typed: { kind: int, min: 4, max: 32, unit: bits } }
+          - { name: Tone, description: Adjusts the tone., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: BAL,  description: Adjusts the balance between original and effect sounds., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PDL FLNGR
+        page: 29
+        description: The expression pedal controls the emphasized frequency of this flanger.
+        params:
+          - { name: FREQ,  description: "This sets the emphasized frequency. (Pedal-controllable.)", raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: RESO,  description: Sets effect resonance., raw: "-10 – 10", typed: { kind: int, min: -10, max: 10 } }
+          - { name: HiDMP, description: Adjusts the treble attenuation of the effect sound., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Mix,   description: Adjusts the amount of effected sound that is mixed with the original sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: PDL Reso
+        page: 29
+        description: Pedal wah with a strong character.
+        params:
+          - { name: FREQ, description: "Adjusts the emphasized frequency. (Pedal-controllable.)", raw: "1 – 50", typed: { kind: int, min: 1, max: 50 } }
+          - { name: RESO, description: Sets effect resonance., raw: "0 – 10", typed: { kind: int, min: 0, max: 10 } }
+          - { name: Dry,  description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: VOL,  description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Output VP
+        page: 29
+        description: This controls the product output level. This volume will be kept even when the patch memory is changed.
+        params: []
+        notes:
+          - "Source PDF shows '- -' for parameter list; this effect exposes no patch-level parameters. The actual output volume is controlled by the expression pedal in real time."
+
+  SND-RTN:
+    pages: [30]
+    effects:
+      - name: FxLoop
+        page: 30
+        description: Use this to insert an external effect, for example, between effects on this unit. The signal will be sent to the SEND jack from the position where this effect is placed, and the signal from the RETURN jack will be returned to the same position.
+        params:
+          - { name: Send,   description: Adjusts the SEND jack output level., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Return, description: Adjusts the RETURN jack input level., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Dry,    description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Vol,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+      - name: Send
+        page: 30
+        description: Use this to output sound to an external effect, for example, in the middle of the effect chain of this unit. The signal will be sent to the SEND jack from the position where this effect is placed.
+        params:
+          - { name: Send,   description: Adjusts the SEND jack output level., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Dry,    description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Mode,   description: "Chooses the function assigned to SEND. When it is set to SUBOUT, the patch level and master volume are applied to the output signal to SEND.", raw: "SEND, SUBOUT", typed: { kind: enum, values: [SEND, SUBOUT] } }
+          - { name: ON/OFF, description: Sets the foot switch function., raw: "LATCH, UnLATCH", typed: { kind: enum, values: [LATCH, UnLATCH] } }
+
+      - name: Return
+        page: 30
+        description: Use this to mix the sound from an external effect, for example, into the middle of the effect chain of this unit. The signal from the RETURN jack will be returned to the position where this effect is placed.
+        params:
+          - { name: Return, description: Adjusts the RETURN jack input level., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Phase,  description: Set the phase of the RETURN jack input signal., raw: "NORM, INV", typed: { kind: enum, values: [NORM, INV] } }
+          - { name: Dry,    description: Adjusts the volume of the unaffected sound., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: Vol,    description: Adjusts the volume., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+
+  IR:
+    pages: [30]
+    effects:
+      - name: IR
+        page: 30
+        description: Impulse responses capture the acoustic characteristics of spaces and quantify them as data.
+        params:
+          - { name: LO,  description: Adjusts volume of low frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: HI,  description: Adjusts volume of high frequencies., raw: "0 – 100", typed: { kind: int, min: 0, max: 100 } }
+          - { name: BAL, description: "Adjusts the balance between original and effect sounds. When it is set between -100 to -1, the polarity of effect sound is reversed.", raw: "-100 – 100", typed: { kind: int, min: -100, max: 100, note: "Negative values invert effect polarity." } }
+          - { name: VOL, description: Adjusts the volume., raw: "-60.0 – 6.0", typed: { kind: float, min: -60.0, max: 6.0, unit: dB } }
+
+
