@@ -1,0 +1,23 @@
+[aist#0:0/pcm_s16le @ 00000217a2a346c0] Guessed Channel Layout: stereo
+Input #0, wav, from 'samples/_reference/fat-man/abyssal-riff.wav':
+  Metadata:
+    comment         : made with suno; created=2026-05-12T05:23:24Z; id=8da72d0c-aaed-4c79-86fa-52d418259db9
+    encoder         : Lavf60.16.100
+  Duration: 00:03:42.72, bitrate: 1536 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, stereo, s16, 1536 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+[Parsed_silencedetect_0 @ 00000217a45e2180] silence_start: 0
+Output #0, null, to 'pipe:':
+  Metadata:
+    comment         : made with suno; created=2026-05-12T05:23:24Z; id=8da72d0c-aaed-4c79-86fa-52d418259db9
+    encoder         : Lavf62.12.101
+  Stream #0:0: Audio: pcm_s16le, 48000 Hz, stereo, s16, 1536 kb/s
+    Metadata:
+      encoder         : Lavc62.28.101 pcm_s16le
+[Parsed_silencedetect_0 @ 00000217a45e2180] silence_end: 1.894854 | silence_duration: 1.894854
+[Parsed_silencedetect_0 @ 00000217a45e2180] silence_start: 221.011354
+[Parsed_silencedetect_0 @ 00000217a45e2180] silence_end: 222.72 | silence_duration: 1.708646
+[out#0/null @ 00000217a29b9240] video:0KiB audio:41760KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:03:42.72 bitrate=N/A speed=1.72e+03x elapsed=0:00:00.12    

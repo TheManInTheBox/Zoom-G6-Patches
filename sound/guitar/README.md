@@ -28,6 +28,71 @@ When a guitar track is soloed in the mix, it should:
 | 5–8 kHz | Tapered. Air starts thinning. |
 | > 8 kHz | Soft rolloff. No fizz, no 10k shelf boost. |
 
+## Studio One Guitar Chain
+
+Use the G6 as the amp/cab source and keep Studio One processing small. The point is level control and cleanup, not a second amp sim.
+
+### Studio One guitar track template
+
+Build this once, save it as a track preset, and reuse it on every song.
+
+1. Input: mono audio track from the G6 / Quantum HD 8 line input.
+2. Clip gain: trim loud sections so pre-insert peaks land around -12 to -8 dBFS.
+3. HPF: start at 75 Hz, move to 80 Hz only if the low end is still thick.
+4. Subtractive EQ:
+	- 250–300 Hz, about -2 dB, medium Q, if the tone is muddy.
+	- 2.8–4 kHz, about -1 to -3 dB, only if the 498T gets sharp.
+5. Compressor: light glue only, 1–2 dB gain reduction.
+6. Optional saturation: very gentle, and level-match the output.
+7. Track fader: final placement in the mix.
+8. Guitar bus: 1 dB of glue compression max, HPF around 80 Hz, tiny vocal-pocket cuts only.
+
+### Preset names
+
+- Track preset: `FM Guitar G6 - Rhythm`
+- Bus preset: `FM Guitar Bus - Glue`
+
+### Chain rule
+
+Do not add another amp sim in Studio One. The G6 is the tone source; Studio One is for cleanup, control, and automation.
+
+### Rhythm track
+
+1. Event/clip gain: trim so loud sections peak around -12 to -8 dBFS before inserts.
+2. HPF EQ: 75 Hz start point, move to 80 Hz if the low end is still too thick.
+3. Subtractive EQ:
+	- 250–300 Hz, about -2 dB, medium Q, if the tone is muddy.
+	- 2.8–4 kHz, about -1 to -3 dB, only if the 498T gets sharp.
+4. Compressor: light glue only, 1–2 dB gain reduction, slow enough to keep pick attack alive.
+5. Optional saturation: use only if the track feels too sterile, and level-match the output.
+6. Track fader: bring the part into the mix here, not with extra gain on the inserts.
+
+### Lead track
+
+1. Same cleanup as rhythm.
+2. Add a little more mid presence instead of more top-end.
+3. Use more compression than rhythm only if you need sustain, but keep it subtle.
+4. Add delay/reverb on sends, not as inserts.
+
+### Guitar bus
+
+1. Bus comp: 1 dB gain reduction max.
+2. HPF: about 80 Hz.
+3. Subtractive EQ: tiny cuts only, mainly to keep vocals clear.
+4. No heavy saturation or limiting on the guitar bus unless the whole mix is already balanced.
+
+### Red Light Dist reference settings
+
+If you want to use Red Light Dist as a color box on guitars, start here:
+
+- Type: Soft Tube
+- Stages: I
+- Drive: 1.2 to 2.0
+- Distortion: 0.9 to 2.0
+- Mix: 10% to 18%
+- Input: just enough to tickle it, not slam it
+- Output: level-match bypassed vs enabled
+
 ## G6 Patches
 
 | Role | Patch file | Status |

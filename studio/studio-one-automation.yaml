@@ -1,0 +1,288 @@
+version: 1
+app: Fender Studio Pro / Studio One
+purpose: Companion automation manifest for reusable track presets, FX chains, and macro-style session setup.
+automationStrategy: template_first
+sessionBootstrap:
+  description: Open the session from a prepared .song template so the track and bus chains are already loaded when the project opens.
+  practicalAutoLoad: true
+notes:
+  - This is a declarative spec, not a native Studio One project file.
+  - Studio One still requires loading the preset/template inside the DAW.
+  - Use this manifest as the source of truth for any future local helper, macro pack, or template-building workflow.
+
+songTemplates:
+  dead_air_drop_a:
+    displayName: FM - Dead Air - Drop A
+    type: song_template
+    sampleRateHz: 48000
+    bitDepth: 24
+    panLawDb: -3
+    timelineLength: 3m30s
+    routing:
+      tracks_to_buses: true
+      buses_to_mix_bus: true
+      fx_to_mix_bus: true
+      reference_bypass_mix_bus: true
+    folders:
+      - name: Drums
+        tracks:
+          - Kick In
+          - Snare Top
+          - Snare Bottom
+          - Toms
+          - Overheads L/R
+          - Room
+      - name: Bass
+        tracks:
+          - Bass DI
+          - Bass Grind
+      - name: Guitars
+        tracks:
+          - GTR Rhythm L
+          - GTR Rhythm R
+          - GTR Lead
+      - name: Vocals
+        tracks:
+          - Vox Lead Melodic
+          - Vox Lead Harsh
+          - Vox Double L
+          - Vox Double R
+    buses:
+      - Drum Bus
+      - Bass Bus
+      - Guitar Bus
+      - Vocal Bus
+      - Mix Bus
+    fxReturns:
+      - FX Plate
+      - FX Slap
+      - FX Throw
+    referenceTrack:
+      name: Print Ref
+      output: main_out_only
+    presetAssignments:
+      GTR Rhythm L: guitar_rhythm
+      GTR Rhythm R: guitar_rhythm
+      GTR Lead: guitar_lead
+      Vox Lead Melodic: vocal_lead
+      Vox Lead Harsh: vocal_lead
+      Guitar Bus: guitar_bus
+      Vocal Bus: vocal_bus
+      Mix Bus: mix_bus
+    sendDefaultsDb:
+      GTR Rhythm L:
+        FX Plate: -22
+      GTR Rhythm R:
+        FX Plate: -22
+      GTR Lead:
+        FX Plate: -18
+        FX Slap: -20
+      Vox Lead Melodic:
+        FX Plate: -16
+        FX Slap: -18
+      Vox Lead Harsh:
+        FX Plate: -20
+        FX Slap: -22
+    postLoadActions:
+      - duplicate_vocal_lead_to_harsh_lane
+      - bypass_pitch_correction_on_harsh_lane
+      - import_reference_track
+      - save_as_song_template
+
+presets:
+  guitar_rhythm:
+    displayName: FM Guitar G6 - Rhythm
+    type: track
+    input: mono_audio_from_g6_line_in
+    routeTo: Guitar bus
+    chain:
+      - stage: clip_gain
+        target: pre_insert_peaks_-12_to_-8_dbfs
+      - stage: hpf_eq
+        hz: 75
+        fallbackHz: 80
+      - stage: subtractive_eq
+        bands:
+          - hz: 275
+            gainDb: -2
+            q: medium
+            condition: mud
+          - hz: 3500
+            gainDb: -1_to_-3
+            q: medium
+            condition: sharp_bridge_pickup
+      - stage: compressor
+        gainReductionDb: 1_to_2
+      - stage: optional_saturation
+        mode: gentle_level_matched
+      - stage: track_fader
+        purpose: final_mix_placement
+
+  guitar_lead:
+    displayName: FM Guitar G6 - Lead
+    type: track
+    input: mono_audio_from_g6_line_in
+    routeTo: Guitar bus
+    chain:
+      - stage: clip_gain
+        target: pre_insert_peaks_-12_to_-8_dbfs
+      - stage: hpf_eq
+        hz: 75
+        fallbackHz: 80
+      - stage: subtractive_eq
+        bands:
+          - hz: 275
+            gainDb: -1_to_-2
+            q: medium
+            condition: mud
+          - hz: 3500
+            gainDb: -1_to_-2
+            q: medium
+            condition: sharp_bridge_pickup
+      - stage: compressor
+        gainReductionDb: 1_to_3
+      - stage: optional_saturation
+        mode: gentle_level_matched
+      - stage: send_fx
+        targets:
+          - plate_reverb
+          - slap_delay
+      - stage: track_fader
+        purpose: final_mix_placement
+
+  vocal_lead:
+    displayName: FM Vocal SM7B - Lead
+    type: track
+    input: mono_audio_from_quantum_hd_8_mic_in
+    routeTo: Vocal bus
+    chain:
+      - stage: clip_gain
+        target: pre_insert_peaks_-12_to_-8_dbfs
+      - stage: hpf_eq
+        hz: 80
+      - stage: subtractive_eq
+        bands:
+          - hz: 275
+            gainDb: small_cut
+            q: medium
+            condition: chest_buildup
+          - hz: 900
+            gainDb: small_cut
+            q: medium
+            condition: boxy_or_nasal
+          - hz: 4000
+            gainDb: small_cut
+            q: medium
+            condition: hard_consonants
+      - stage: fast_compressor
+        gainReductionDb: 3_to_6
+      - stage: slow_compressor
+        gainReductionDb: 2_to_4
+      - stage: de_esser
+        hz: 5000_to_7000
+      - stage: additive_eq
+        bands:
+          - hz: 3000
+            gainDb: 1_to_3
+            q: broad
+            condition: still_hides_in_mix
+      - stage: optional_saturation
+        mode: gentle_level_matched
+      - stage: send_fx
+        targets:
+          - short_plate_reverb
+          - slap_delay
+      - stage: track_fader
+        purpose: final_mix_placement
+
+  vocal_bus:
+    displayName: FM Vocal Bus - Glue
+    type: bus
+    chain:
+      - stage: bus_compressor
+        gainReductionDb: 1_to_2
+      - stage: send_fx
+        targets:
+          - track_level_verb
+          - track_level_delay
+      - stage: bus_fader
+        purpose: automate_around_arrangement
+
+  guitar_bus:
+    displayName: FM Guitar Bus - Glue
+    type: bus
+    chain:
+      - stage: bus_compressor
+        gainReductionDb: up_to_1
+      - stage: hpf_eq
+        hz: 80
+      - stage: subtractive_eq
+        mode: tiny_vocal_pocket_cuts_only
+      - stage: bus_fader
+        purpose: automate_around_arrangement
+
+  mix_bus:
+    displayName: FM Mix Bus - Targeted Finish
+    type: bus
+    chain:
+      - stage: subtractive_eq
+        mode: only_if_needed
+      - stage: glue_compressor
+        ratio: 2:1_or_4:1
+        attackMs: 30
+        release: auto_or_0.3s
+      - stage: optional_saturation
+        mode: gentle_tape_or_console
+      - stage: additive_eq
+        mode: broad_musical
+      - stage: limiter
+        ceilingDbTP: -3.5
+
+macros:
+  - name: Create Fat Man Guitar Track
+    output: guitar_rhythm
+    actions:
+      - load_track_template
+      - create_mono_audio_track
+      - apply_track_preset
+      - route_to_bus
+      - arm_for_recording
+
+  - name: Create Fat Man Vocal Track
+    output: vocal_lead
+    actions:
+      - load_track_template
+      - create_mono_audio_track
+      - apply_track_preset
+      - route_to_bus
+      - arm_for_recording
+
+  - name: Build Fat Man Session
+    actions:
+      - open_song_template
+      - create_guitar_bus
+      - create_vocal_bus
+      - create_mix_bus
+      - insert_bus_presets
+      - import_reference_track
+
+  - name: Build Dead Air Song Template
+    output: dead_air_drop_a
+    actions:
+      - create_song_from_empty
+      - create_folder_track_layout
+      - create_buses_and_fx_returns
+      - apply_track_and_bus_presets
+      - set_default_sends
+      - import_reference_track
+      - save_song_template
+
+files:
+  docs:
+    - sound/guitar/README.md
+    - sound/vocals/chain.md
+    - sound/bass/chain.md
+    - sound/drums/README.md
+    - sound/mix-bus/chain.md
+    - sessions/_TEMPLATE/notes.md
+    - sessions/dead-air/notes.md
